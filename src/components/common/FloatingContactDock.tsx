@@ -90,7 +90,7 @@ export const FloatingContactDock: React.FC<FloatingContactDockProps> = ({ onOpen
         whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="group relative flex items-center gap-3 px-5 py-3.5 bg-gradient-to-r from-[#0E1B38] to-[#0A1128] text-white font-bold text-xs tracking-wider uppercase rounded-full shadow-[0_12px_35px_rgba(37,99,235,0.4)] cursor-pointer border border-amber-500/40 hover:border-amber-400 focus-visible:outline-blue-400 transition-all"
+        className="group relative flex items-center gap-3 px-5 py-3.5 bg-[#000000] text-white font-bold text-xs tracking-wider uppercase rounded-full shadow-[0_12px_35px_rgba(37,99,235,0.4)] cursor-pointer border border-amber-500/40 hover:border-amber-400 focus-visible:outline-blue-400 transition-all"
         aria-label={isOpen ? 'Close consultation options' : 'Open consultation options'}
       >
         {/* Soft Animated Amber Beacon */}

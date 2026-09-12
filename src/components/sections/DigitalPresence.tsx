@@ -44,10 +44,10 @@ export const DigitalPresence: React.FC = () => {
   ]
 
   return (
-    <section id="digital-presence" className="relative bg-[#070B18] text-[#F3F2EE] py-16 sm:py-24 border-b border-white/10 overflow-hidden">
+    <section id="digital-presence" className="relative bg-[#000000] text-[#F3F2EE] py-16 sm:py-24 border-b border-white/10 overflow-hidden">
       {/* Ambient background glow orbs */}
-      <div className="absolute top-1/3 -left-20 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/3 -right-20 w-80 h-80 bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/3 -left-20 w-80 h-80 bg-blue-600/[0.02] animate-ambient rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/3 -right-20 w-80 h-80 bg-purple-600/[0.015] animate-ambient rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center mb-12">

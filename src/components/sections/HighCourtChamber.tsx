@@ -30,7 +30,7 @@ export const HighCourtChamber: React.FC = () => {
   ]
 
   return (
-    <section className="relative bg-[#070D1F] text-[#FFFFFF] py-16 sm:py-24 border-b border-white/12 overflow-hidden">
+    <section className="relative bg-[#000000] text-[#FFFFFF] py-16 sm:py-24 border-b border-white/12 overflow-hidden">
       {/* Real-life Full-Color High Court Sandstone Colonnade Ambient Imagery */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <img
@@ -38,7 +38,7 @@ export const HighCourtChamber: React.FC = () => {
           alt="High Court Architecture"
           className="w-full h-full object-cover object-center opacity-25"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#070D1F] via-[#070D1F]/80 to-[#070D1F]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#000000] via-[#000000]/80 to-[#000000]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.15),transparent_70%)]" />
       </div>
 

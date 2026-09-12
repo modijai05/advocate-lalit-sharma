@@ -14,10 +14,10 @@ const PERIOD_BADGES = [
 
 export const ProfessionalTimeline: React.FC = () => {
   return (
-    <section id="timeline" className="relative bg-[#080D1A] text-[#FFFFFF] py-16 sm:py-24 border-b border-white/10 overflow-hidden">
+    <section id="timeline" className="relative bg-[#000000] text-[#FFFFFF] py-16 sm:py-24 border-b border-white/10 overflow-hidden">
       {/* Ambient background light orbs */}
-      <div className="absolute top-1/4 -right-20 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 -right-20 w-80 h-80 bg-blue-600/[0.02] animate-ambient rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-amber-500/[0.015] animate-ambient rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center mb-12">
@@ -50,7 +50,7 @@ export const ProfessionalTimeline: React.FC = () => {
               >
                 {/* Timeline Node with Pulsing Colored Glow */}
                 <div className="absolute -left-[1.95rem] sm:-left-[2.95rem] top-3 flex items-center justify-center">
-                  <span className="w-4 h-4 rounded-full bg-blue-500 border-2 border-[#080D1A] shadow-[0_0_12px_#3b82f6] group-hover:scale-150 group-hover:bg-amber-400 group-hover:shadow-[0_0_16px_#f59e0b] transition-all duration-300" />
+                  <span className="w-4 h-4 rounded-full bg-blue-500 border-2 border-[#000000] shadow-[0_0_12px_#3b82f6] group-hover:scale-150 group-hover:bg-amber-400 group-hover:shadow-[0_0_16px_#f59e0b] transition-all duration-300" />
                 </div>
 
                 {/* Entry Card */}

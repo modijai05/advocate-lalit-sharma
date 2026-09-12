@@ -10,7 +10,7 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
   return (
     <section
-      className="relative min-h-[100svh] w-full bg-[#050816] text-[#FFFFFF] flex items-center overflow-hidden pt-20 pb-12"
+      className="relative min-h-[100svh] w-full bg-[#000000] text-[#FFFFFF] flex items-center overflow-hidden pt-20 pb-12"
       aria-label="Advocate Lalit Sharma — Hero"
     >
       {/* Real-life Colorful Law Library Ambient Backdrop */}
@@ -24,12 +24,12 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
           className="w-full h-full object-cover object-center"
         />
         {/* Colorful Gradient Overlays for High Contrast & Dramatic Ambiance */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050816] via-[#050816]/85 to-[#050816]/95" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#050816_90%)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#050816]/85 to-[#050816]/95" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#000000_90%)]" />
 
         {/* Ambient Vibrant Floating Glow Orbs */}
-        <div className="absolute top-1/4 left-10 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-amber-500/15 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/4 left-10 w-96 h-96 bg-blue-600/[0.02] rounded-full blur-[120px] pointer-events-none animate-ambient" />
+        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-amber-500/[0.015] rounded-full blur-[120px] pointer-events-none animate-ambient" style={{ animationDelay: '2s' }} />
       </div>
 
       {/* Subtle Floating Legal Scale Watermark in Background */}
@@ -156,7 +156,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
                   fetchPriority="high"
                 />
                 {/* Subtle bottom shadow to anchor caption */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/85 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/85 via-transparent to-transparent pointer-events-none" />
 
                 {/* Caption Floating Card */}
                 <div className="absolute bottom-3.5 left-3.5 right-3.5">

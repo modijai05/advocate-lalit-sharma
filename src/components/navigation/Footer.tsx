@@ -35,14 +35,14 @@ export const Footer: React.FC<FooterProps> = ({
   ]
 
   return (
-    <footer className="relative bg-[#050B1E] text-slate-200 pt-20 pb-12 border-t border-white/10 overflow-hidden">
+    <footer className="relative bg-[#000000] text-slate-200 pt-20 pb-12 border-t border-white/10 overflow-hidden">
       {/* Top Multi-Color Jewel-Tone Ribbon */}
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 via-amber-400 via-emerald-500 to-indigo-600 shadow-[0_0_15px_rgba(245,158,11,0.5)]" />
 
       {/* Ambient Colorful Depth Orbs */}
-      <div className="absolute -top-24 left-1/4 w-96 h-96 bg-blue-600/15 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-amber-500/15 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-10 left-1/3 w-80 h-80 bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -top-24 left-1/4 w-96 h-96 bg-blue-600/[0.02] animate-ambient rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-amber-500/[0.015] animate-ambient rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-10 left-1/3 w-80 h-80 bg-emerald-500/[0.01] animate-ambient rounded-full blur-[120px] pointer-events-none" />
 
       {/* Subtle Background Law Scale Watermark */}
       <div className="absolute -left-12 bottom-12 opacity-[0.03] pointer-events-none">
