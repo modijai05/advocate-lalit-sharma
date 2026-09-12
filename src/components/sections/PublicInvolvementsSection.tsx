@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SectionLabel } from '../common/SectionLabel'
-import { ExternalLink, X, ShieldCheck, ChevronRight } from 'lucide-react'
+import { ExternalLink, X, ShieldCheck, ChevronRight, Maximize2 } from 'lucide-react'
 
 interface InvolvementItem {
   id: string
@@ -101,6 +101,27 @@ const INVOLVEMENTS: InvolvementItem[] = [
 
 export const PublicInvolvementsSection: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<InvolvementItem | null>(null)
+  const [fullscreenImage, setFullscreenImage] = useState<{
+    src: string
+    title: string
+    badge: string
+    authority: string
+  } | null>(null)
+
+  // Keyboard shortcut: ESC to exit fullscreen or detail modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (fullscreenImage) {
+          setFullscreenImage(null)
+        } else if (selectedItem) {
+          setSelectedItem(null)
+        }
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [fullscreenImage, selectedItem])
 
   return (
     <section
@@ -136,17 +157,37 @@ export const PublicInvolvementsSection: React.FC = () => {
               onClick={() => setSelectedItem(item)}
               className="group bg-[#111] border border-white/10 hover:border-[#C9A84C]/40 rounded-xl overflow-hidden shadow-xl transition-all duration-300 flex flex-col cursor-pointer"
             >
-              {/* Preview Image */}
+              {/* Preview Image with Fullscreen Action */}
               <div className="relative h-40 overflow-hidden bg-[#1A1A18]">
                 <img
                   src={item.previewImage}
                   alt={item.title}
                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 brightness-90 group-hover:brightness-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-black/30" />
-                <span className={`absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wider uppercase text-black bg-gradient-to-r ${item.badgeColor} shadow-md`}>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-black/30 pointer-events-none" />
+                <span className={`absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wider uppercase text-black bg-gradient-to-r ${item.badgeColor} shadow-md pointer-events-none`}>
                   {item.badge}
                 </span>
+
+                {/* Direct Fullscreen Button on Card */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setFullscreenImage({
+                      src: item.previewImage,
+                      title: item.title,
+                      badge: item.badge,
+                      authority: item.authority,
+                    })
+                  }}
+                  className="absolute top-3 right-3 px-2 py-1 bg-black/80 hover:bg-[#C9A84C] text-white hover:text-black border border-white/20 rounded-md font-ui text-[0.58rem] font-bold tracking-wider uppercase shadow-md transition-all duration-200 flex items-center gap-1 backdrop-blur-sm z-10 cursor-pointer"
+                  title="View image full screen"
+                  aria-label={`View ${item.title} image on full screen`}
+                >
+                  <Maximize2 className="w-3 h-3" />
+                  <span className="hidden sm:inline">Full Screen</span>
+                </button>
               </div>
 
               {/* Card Content */}
@@ -161,7 +202,7 @@ export const PublicInvolvementsSection: React.FC = () => {
                 <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/10">
                   <span className="font-ui text-[0.62rem] text-[#5E5D58]">{item.ref}</span>
                   <span className="font-ui text-[0.65rem] text-[#C9A84C] font-bold flex items-center gap-1">
-                    View <ChevronRight className="w-3 h-3" />
+                    Details <ChevronRight className="w-3 h-3" />
                   </span>
                 </div>
               </div>
@@ -187,24 +228,59 @@ export const PublicInvolvementsSection: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
               className="bg-[#0F0F0F] border border-white/20 rounded-xl max-w-lg w-full shadow-2xl relative text-left my-auto overflow-hidden"
             >
-              {/* Image Banner */}
-              <div className="relative h-44 overflow-hidden">
+              {/* Image Banner with Fullscreen Click */}
+              <div
+                className="relative h-48 sm:h-56 overflow-hidden cursor-zoom-in group"
+                onClick={() =>
+                  setFullscreenImage({
+                    src: selectedItem.previewImage,
+                    title: selectedItem.title,
+                    badge: selectedItem.badge,
+                    authority: selectedItem.authority,
+                  })
+                }
+                title="Click to view image on full screen"
+              >
                 <img
                   src={selectedItem.previewImage}
                   alt={selectedItem.title}
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-transparent to-black/40 pointer-events-none" />
+
                 <button
-                  onClick={() => setSelectedItem(null)}
-                  className="absolute top-4 right-4 p-1.5 bg-black/70 text-white border border-white/20 rounded-lg"
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setSelectedItem(null)
+                  }}
+                  className="absolute top-4 right-4 p-1.5 bg-black/70 hover:bg-black text-white border border-white/20 rounded-lg cursor-pointer transition-colors z-10"
                   aria-label="Close"
                 >
                   <X className="w-4 h-4" />
                 </button>
-                <span className={`absolute bottom-4 left-5 px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wider uppercase text-black bg-gradient-to-r ${selectedItem.badgeColor}`}>
+
+                <span className={`absolute bottom-4 left-5 px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wider uppercase text-black bg-gradient-to-r ${selectedItem.badgeColor} pointer-events-none`}>
                   {selectedItem.badge}
                 </span>
+
+                {/* Fullscreen Button */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setFullscreenImage({
+                      src: selectedItem.previewImage,
+                      title: selectedItem.title,
+                      badge: selectedItem.badge,
+                      authority: selectedItem.authority,
+                    })
+                  }}
+                  className="absolute bottom-3 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-black/80 hover:bg-[#C9A84C] text-white hover:text-black border border-white/30 hover:border-[#C9A84C] rounded-md font-ui text-[0.65rem] font-bold uppercase tracking-wider shadow-lg transition-all backdrop-blur-md cursor-pointer z-10"
+                >
+                  <Maximize2 className="w-3 h-3" />
+                  <span>Full Screen</span>
+                </button>
               </div>
 
               {/* Modal Content */}
@@ -238,6 +314,85 @@ export const PublicInvolvementsSection: React.FC = () => {
                 </div>
               </div>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ══ Dedicated Fullscreen Image Viewer Modal ══ */}
+      <AnimatePresence>
+        {fullscreenImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[300] bg-black/95 backdrop-blur-md flex flex-col justify-between p-3 sm:p-6"
+            onClick={() => setFullscreenImage(null)}
+          >
+            {/* Top Bar */}
+            <div
+              className="flex items-center justify-between gap-4 w-full max-w-6xl mx-auto pb-3 border-b border-white/10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                <span className="px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wider uppercase text-black bg-[#C9A84C] shrink-0">
+                  {fullscreenImage.badge}
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-heading text-sm sm:text-base font-bold text-white truncate">
+                    {fullscreenImage.title}
+                  </h3>
+                  <p className="font-ui text-[0.62rem] text-[#9B9790] truncate">
+                    {fullscreenImage.authority}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <a
+                  href={fullscreenImage.src}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white rounded-sm font-ui text-xs font-semibold tracking-wider transition-colors"
+                  title="Open original image file in new browser tab"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>Open Full File</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setFullscreenImage(null)}
+                  className="p-2 bg-white/10 hover:bg-[#C9A84C] text-white hover:text-black rounded-sm border border-white/20 transition-colors cursor-pointer"
+                  aria-label="Close fullscreen view"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Center Image Canvas */}
+            <div
+              className="flex-1 flex items-center justify-center p-2 sm:p-4 min-h-0 overflow-hidden"
+              onClick={() => setFullscreenImage(null)}
+            >
+              <motion.img
+                initial={{ scale: 0.94, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.94, opacity: 0 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                src={fullscreenImage.src}
+                alt={fullscreenImage.title}
+                onClick={(e) => e.stopPropagation()}
+                className="max-w-full max-h-[80vh] sm:max-h-[82vh] object-contain rounded-sm border border-white/15 shadow-[0_0_50px_rgba(0,0,0,0.9)] cursor-default select-none"
+              />
+            </div>
+
+            {/* Bottom Bar Hints */}
+            <div
+              className="text-center text-[0.68rem] font-ui text-[#8E8D88] pt-2"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Click outside or press <kbd className="px-1.5 py-0.5 bg-white/10 text-white rounded text-[0.65rem] font-mono">ESC</kbd> to exit full screen view
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
