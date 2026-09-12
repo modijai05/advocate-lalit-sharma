@@ -43,7 +43,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 16px;
-    line-height: 1.75; /* Generous line-height for WCAG readability */
+    line-height: 1.75;
+    /* Prevent horizontal scroll on all devices */
+    overflow-x: hidden;
+    /* Better tap highlight on iOS */
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
@@ -52,6 +56,9 @@
     overflow-x: hidden;
     background-color: var(--c-ink);
     font-family: var(--font-sans);
+    /* Ensure content fits viewport on mobile */
+    min-width: 320px;
+    max-width: 100vw;
   }
 
   /* ── Heading Typography — Merriweather (authoritative, classic) ── */
@@ -100,6 +107,28 @@
   line-height: 1.7;
   color: var(--c-text-secondary);
 }
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Responsive image defaults */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 
 /* ══════════════════════════════════════════
    ARCHITECTURAL GRID BACKGROUNDS

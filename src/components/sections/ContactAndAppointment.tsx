@@ -14,7 +14,6 @@ import {
   CheckCircle2,
   ExternalLink
 } from 'lucide-react'
-import { AdvocateTieMotif } from '../brand/AdvocateTieMotif'
 
 export const ContactAndAppointment: React.FC = () => {
   const { chamberTimings, submitEnquiry, submitAppointment } = useCMS()
@@ -126,127 +125,90 @@ export const ContactAndAppointment: React.FC = () => {
   }
 
   return (
-    <section id="contact" className="relative bg-[#050505] text-[#F7F7F5] py-24 sm:py-32 border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center mb-16">
-          <SectionLabel number="12" title="CONTACT & APPOINTMENTS" theme="dark" />
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#FFFFFF] font-normal tracking-tight">
+    <section id="contact" className="relative bg-[#050505] text-[#F7F7F5] py-16 sm:py-24 border-b border-white/10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center text-center mb-10">
+          <SectionLabel number="12" title="Contact & Appointments" theme="dark" />
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white tracking-tight">
             Chambers & Enquiries
           </h2>
-          <p className="text-xs sm:text-sm font-mono tracking-[0.2em] text-[#8E8D88] uppercase mt-2">
+          <p className="text-xs sm:text-sm font-mono tracking-[0.15em] text-[#8E8D88] uppercase mt-2">
             Rajasthan High Court & Residential Office Consultation
           </p>
-          <AdvocateTieMotif variant="divider" className="w-48 text-white/20 mt-4" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Official Contact Coordinates (Cols 1-5) */}
-          <div className="lg:col-span-5 space-y-8 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          {/* Left Column: Official Contact Coordinates */}
+          <div className="space-y-4 text-left">
             {/* Chamber Box */}
-            <div className="bg-[#0C0C0C] border border-white/15 p-8 space-y-4">
-              <div className="flex items-center gap-3 text-xs font-mono tracking-widest text-[#E7E6E1] uppercase">
-                <MapPin className="w-4 h-4 text-[#FFFFFF]" />
-                <span>HIGH COURT CHAMBER</span>
+            <div className="bg-[#0C0C0C] border border-white/15 p-5 space-y-3">
+              <div className="flex items-center gap-2.5 font-ui text-[0.58rem] font-bold tracking-widest text-[#E7E6E1] uppercase">
+                <MapPin className="w-3.5 h-3.5 text-[#FFFFFF]" />
+                <span>High Court Chamber</span>
               </div>
-              <div className="text-lg font-serif text-[#FFFFFF] leading-snug">
+              <div className="font-heading text-[0.95rem] text-[#FFFFFF] leading-snug">
                 {CLIENT_PROFILE.chamber}
               </div>
-              <div>
-                <a
-                  href={CLIENT_PROFILE.locationUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-[#E7E6E1] hover:text-white uppercase tracking-wider underline underline-offset-4"
-                >
-                  <span>VIEW CLIENT LOCATION ↗</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
+              <a
+                href={CLIENT_PROFILE.locationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-ui text-[0.7rem] text-[#C9A84C] hover:text-[#E5C368] transition-colors"
+              >
+                <ExternalLink className="w-3 h-3" />
+                <span>View on Google Maps ↗</span>
+              </a>
             </div>
 
             {/* Residential Office Box */}
-            <div className="bg-[#0C0C0C] border border-white/15 p-8 space-y-3">
-              <div className="flex items-center gap-3 text-xs font-mono tracking-widest text-[#8E8D88] uppercase">
-                <MapPin className="w-4 h-4 text-[#E7E6E1]" />
-                <span>RESIDENTIAL OFFICE</span>
+            <div className="bg-[#0C0C0C] border border-white/15 p-5 space-y-2">
+              <div className="flex items-center gap-2.5 font-ui text-[0.58rem] font-bold tracking-widest text-[#8E8D88] uppercase">
+                <MapPin className="w-3.5 h-3.5 text-[#E7E6E1]" />
+                <span>Residential Office</span>
               </div>
-              <div className="text-base font-serif text-[#FFFFFF] leading-relaxed">
+              <div className="font-ui text-[0.88rem] text-[#FFFFFF] leading-relaxed">
                 {CLIENT_PROFILE.residentialOffice}
               </div>
             </div>
 
-            {/* Telephony & Messaging Coordinates */}
-            <div className="bg-[#0C0C0C] border border-white/15 p-8 space-y-4">
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <Phone className="w-4 h-4 text-[#E7E6E1] mt-1 shrink-0" />
-                  <div>
-                    <div className="text-[10px] font-mono text-[#8E8D88] uppercase tracking-wider">
-                      PHONE
-                    </div>
-                    <a
-                      href={`tel:${CLIENT_PROFILE.phone.replace(/\s+/g, '')}`}
-                      className="text-base font-mono text-[#FFFFFF] hover:text-[#E7E6E1] transition-colors"
-                    >
-                      {CLIENT_PROFILE.phone}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="h-[1px] bg-white/10" />
-
-                <div className="flex items-start gap-4">
-                  <MessageSquare className="w-4 h-4 text-[#E7E6E1] mt-1 shrink-0" />
-                  <div>
-                    <div className="text-[10px] font-mono text-[#8E8D88] uppercase tracking-wider">
-                      WHATSAPP
-                    </div>
-                    <a
-                      href={`https://wa.me/${CLIENT_PROFILE.whatsapp.replace(/[^0-9]/g, '')}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-base font-mono text-[#FFFFFF] hover:text-[#E7E6E1] transition-colors"
-                    >
-                      {CLIENT_PROFILE.whatsapp}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="h-[1px] bg-white/10" />
-
-                <div className="flex items-start gap-4">
-                  <Mail className="w-4 h-4 text-[#E7E6E1] mt-1 shrink-0" />
-                  <div>
-                    <div className="text-[10px] font-mono text-[#8E8D88] uppercase tracking-wider">
-                      EMAIL
-                    </div>
-                    <a
-                      href={`mailto:${CLIENT_PROFILE.email}`}
-                      className="text-sm font-mono text-[#FFFFFF] hover:text-[#E7E6E1] transition-colors break-all"
-                    >
-                      {CLIENT_PROFILE.email}
-                    </a>
-                  </div>
+            {/* Contact Details */}
+            <div className="bg-[#0C0C0C] border border-white/15 p-5 space-y-4">
+              <div className="flex items-center gap-3">
+                <Phone className="w-3.5 h-3.5 text-[#4ADE80] shrink-0" />
+                <div>
+                  <div className="font-ui text-[0.55rem] text-[#8E8D88] uppercase tracking-wider">Phone</div>
+                  <a href={`tel:${CLIENT_PROFILE.phone.replace(/\s+/g, '')}`} className="font-ui text-[0.9rem] text-[#FFFFFF] hover:text-[#F0EEE8] transition-colors">{CLIENT_PROFILE.phone}</a>
                 </div>
               </div>
-            </div>
-
-            {/* Chamber Timings Box */}
-            <div className="bg-[#0C0C0C] border border-white/15 p-6 flex items-start gap-4">
-              <Clock className="w-4 h-4 text-[#8E8D88] mt-1 shrink-0" />
-              <div>
-                <div className="text-[10px] font-mono text-[#8E8D88] uppercase tracking-wider">
-                  CHAMBER TIMINGS
+              <div className="h-px bg-white/8" />
+              <div className="flex items-center gap-3">
+                <MessageSquare className="w-3.5 h-3.5 text-[#25D366] shrink-0" />
+                <div>
+                  <div className="font-ui text-[0.55rem] text-[#8E8D88] uppercase tracking-wider">WhatsApp</div>
+                  <a href={`https://wa.me/${CLIENT_PROFILE.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer" className="font-ui text-[0.9rem] text-[#FFFFFF] hover:text-[#F0EEE8] transition-colors">{CLIENT_PROFILE.whatsapp}</a>
                 </div>
-                <div className="text-sm font-mono text-[#B8B7B1] mt-1">
-                  {chamberTimings}
+              </div>
+              <div className="h-px bg-white/8" />
+              <div className="flex items-center gap-3">
+                <Mail className="w-3.5 h-3.5 text-[#9B9790] shrink-0" />
+                <div>
+                  <div className="font-ui text-[0.55rem] text-[#8E8D88] uppercase tracking-wider">Email</div>
+                  <a href={`mailto:${CLIENT_PROFILE.email}`} className="font-ui text-[0.85rem] text-[#FFFFFF] hover:text-[#F0EEE8] transition-colors break-all">{CLIENT_PROFILE.email}</a>
+                </div>
+              </div>
+              <div className="h-px bg-white/8" />
+              <div className="flex items-center gap-3">
+                <Clock className="w-3.5 h-3.5 text-[#9B9790] shrink-0" />
+                <div>
+                  <div className="font-ui text-[0.55rem] text-[#8E8D88] uppercase tracking-wider">Timings</div>
+                  <div className="font-ui text-[0.85rem] text-[#B8B7B1]">{chamberTimings}</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Forms Panel (Tabs for Enquiry & Appointment) (Cols 6-12) */}
-          <div className="lg:col-span-7 bg-[#0C0C0C] border border-white/15 p-6 sm:p-10 text-left relative">
+          {/* Right Column: Forms Panel */}
+          <div className="bg-[#0C0C0C] border border-white/15 p-5 sm:p-7 text-left relative">
             {/* Tab Selection */}
             <div className="flex items-center gap-2 border-b border-white/10 pb-4 mb-8">
               <button
