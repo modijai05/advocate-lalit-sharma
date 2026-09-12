@@ -33,19 +33,22 @@ export const About: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7 }}
-              className="relative mx-auto max-w-[280px] sm:max-w-sm md:max-w-none"
+              className="relative mx-auto max-w-[280px] sm:max-w-sm md:max-w-none group"
             >
+              {/* Luminous Portrait Glow */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-[#C9A84C]/20 via-[#C9A84C]/5 to-transparent blur-2xl rounded-xl pointer-events-none" />
+
               <div className="absolute -top-2 -left-2 w-7 h-7 border-t-2 border-l-2 border-[#C9A84C] z-10" />
               <div className="absolute -bottom-2 -right-2 w-7 h-7 border-b-2 border-r-2 border-[#C9A84C] z-10" />
 
-              <div className="relative border border-white/15 overflow-hidden shadow-[0_20px_40px_-8px_rgba(0,0,0,0.7)] bg-[#111] rounded-sm">
+              <div className="relative border border-white/15 overflow-hidden shadow-[0_20px_40px_-8px_rgba(0,0,0,0.7)] bg-[#111] rounded-sm group-hover:border-[#C9A84C]/40 transition-colors duration-300">
                 <img
                   src="/assets/images/advocate-lalit-sharma.jpg"
                   alt="Advocate Lalit Sharma in his legal chambers"
-                  className="w-full h-auto aspect-[3/4] object-cover object-center"
+                  className="w-full h-auto aspect-[3/4] object-cover object-center group-hover:scale-102 transition-transform duration-500"
                   loading="lazy"
                 />
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A0A0A] to-transparent p-4 text-left">
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent p-4 text-left">
                   <div className="font-ui text-[0.58rem] font-bold tracking-[0.2em] text-[#C9A84C] uppercase">Chamber 259 · Block-E</div>
                   <div className="font-heading text-[0.9rem] font-bold text-white mt-0.5">Lalit Sharma &amp; Associates</div>
                 </div>
@@ -62,7 +65,7 @@ export const About: React.FC = () => {
               transition={{ duration: 0.7 }}
               className="space-y-5"
             >
-              <p className="font-serif text-[1rem] sm:text-[1.05rem] text-[#F0EEE8] leading-[1.75] italic">
+              <p className="font-serif text-[1rem] sm:text-[1.05rem] text-[#F0EEE8] leading-[1.75] italic border-l-2 border-[#C9A84C]/60 pl-3">
                 {CLIENT_PROFILE.biographyIntro}
               </p>
 
@@ -80,13 +83,13 @@ export const About: React.FC = () => {
                 ].map(card => (
                   <div
                     key={card.label}
-                    className="p-3.5 bg-white/[0.03] border border-white/10 rounded-sm hover:border-[#C9A84C]/30 transition-colors"
+                    className="p-3.5 bg-white/[0.03] border border-white/10 rounded-sm hover:border-[#C9A84C]/50 hover:bg-white/[0.06] hover:shadow-[0_4px_20px_rgba(201,168,76,0.12)] transition-all duration-300 group cursor-default"
                   >
                     <div className="flex items-center gap-1.5 mb-1.5">
                       {card.icon}
-                      <span className="font-ui text-[0.55rem] font-bold tracking-wider text-[#9B9790] uppercase">{card.label}</span>
+                      <span className="font-ui text-[0.55rem] font-bold tracking-wider text-[#9B9790] group-hover:text-[#C9A84C] uppercase transition-colors">{card.label}</span>
                     </div>
-                    <div className="font-heading text-[0.85rem] font-bold text-white leading-tight">{card.value}</div>
+                    <div className="font-heading text-[0.85rem] font-bold text-white leading-tight group-hover:text-[#F3F0E6] transition-colors">{card.value}</div>
                   </div>
                 ))}
               </div>

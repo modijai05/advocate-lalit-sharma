@@ -49,6 +49,10 @@ export function AppContent() {
         style={{ scaleX }}
       />
 
+      {/* Subtle Ambient Depth Orbs */}
+      <div className="fixed top-1/4 -left-32 w-72 h-72 bg-[#C9A84C]/5 rounded-full blur-3xl pointer-events-none z-0" />
+      <div className="fixed top-2/3 -right-32 w-80 h-80 bg-[#C9A84C]/5 rounded-full blur-3xl pointer-events-none z-0" />
+
       {/* 00: Initial Disclaimer Gate (Full-screen chamber entrance) */}
       <DisclaimerGate />
 

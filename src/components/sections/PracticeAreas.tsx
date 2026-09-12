@@ -115,10 +115,19 @@ export const PracticeAreas: React.FC = () => {
               </div>
             </div>
 
-            {/* Graphic */}
+            {/* Graphic with glowing frame */}
             <div className="flex items-center justify-center">
-              <div className="w-full max-w-xs aspect-square flex items-center justify-center bg-[#0C0C0C] border border-white/10 rounded-sm p-8 hover:border-[#C9A84C]/25 transition-colors mx-auto">
-                {getGraphic(graphicKeys[activeChapter])}
+              <div className="relative w-full max-w-xs aspect-square flex items-center justify-center bg-gradient-to-br from-[#131313] to-[#0A0A0A] border border-[#C9A84C]/35 rounded-sm p-8 hover:border-[#C9A84C] transition-all duration-300 shadow-[0_16px_36px_-8px_rgba(0,0,0,0.8)] hover:shadow-[0_0_30px_rgba(201,168,76,0.2)] group mx-auto">
+                {/* Center subtle radial light */}
+                <div className="absolute inset-0 bg-radial from-[#C9A84C]/15 via-transparent to-transparent opacity-70 pointer-events-none" />
+                
+                {/* Subtle corner ticks */}
+                <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-[#C9A84C]/60" />
+                <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-[#C9A84C]/60" />
+
+                <div className="relative z-10 w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                  {getGraphic(graphicKeys[activeChapter])}
+                </div>
               </div>
             </div>
           </motion.div>

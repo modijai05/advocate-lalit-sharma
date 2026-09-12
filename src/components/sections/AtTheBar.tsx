@@ -24,14 +24,15 @@ export const AtTheBar: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Left: "22+" display */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+          {/* Left: "22+" display with ambient glow */}
+          <div className="relative flex flex-col items-center md:items-start text-center md:text-left">
+            <div className="absolute top-1/2 left-1/2 md:left-1/3 -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-[#C9A84C]/15 rounded-full blur-3xl pointer-events-none" />
             <motion.div
               initial={{ opacity: 0, scale: 0.88 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="relative leading-none select-none"
+              className="relative leading-none select-none drop-shadow-[0_0_25px_rgba(201,168,76,0.3)]"
               style={{
                 fontFamily: "'Merriweather', Georgia, serif",
                 fontWeight: 900,
@@ -54,15 +55,15 @@ export const AtTheBar: React.FC = () => {
             </p>
           </div>
 
-          {/* Right: Credential card */}
+          {/* Right: Credential card with interactive glow */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.75, delay: 0.15 }}
-            className="bg-[#111] border border-[#C9A84C]/30 p-6 sm:p-8 relative rounded-sm shadow-[0_20px_40px_-8px_rgba(0,0,0,0.6)]"
+            className="bg-[#111] border border-[#C9A84C]/35 hover:border-[#C9A84C] p-6 sm:p-8 relative rounded-sm shadow-[0_20px_40px_-8px_rgba(0,0,0,0.6)] hover:shadow-[0_0_35px_rgba(201,168,76,0.18)] transition-all duration-300 group"
           >
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C9A84C] via-[#E2C475] to-[#C9A84C] rounded-t-sm" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C9A84C] via-[#E2C475] to-[#C9A84C] rounded-t-sm shadow-[0_0_10px_rgba(201,168,76,0.7)]" />
 
             <div className="space-y-5 text-left">
               {[

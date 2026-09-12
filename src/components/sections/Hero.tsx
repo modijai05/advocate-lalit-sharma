@@ -13,6 +13,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
       className="relative min-h-[100svh] w-full bg-[#0A0A0A] text-[#F0EEE8] flex items-center overflow-hidden pt-20 pb-12"
       aria-label="Advocate Lalit Sharma — Hero"
     >
+      {/* Ambient background glows */}
+      <div className="absolute top-1/4 -left-32 w-80 h-80 bg-[#C9A84C]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 -right-20 w-96 h-96 bg-[#C9A84C]/12 rounded-full blur-[140px] pointer-events-none" />
+
       {/* Grid backdrop */}
       <div
         className="absolute inset-0 pointer-events-none opacity-25"
@@ -119,11 +123,22 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
               initial={{ opacity: 0, scale: 0.96, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[260px] sm:max-w-[320px] lg:max-w-none"
+              className="relative w-full max-w-[260px] sm:max-w-[320px] lg:max-w-none group"
             >
-              {/* Gold corner frames */}
-              <div className="absolute -top-3 -left-3 w-10 h-10 border-t-2 border-l-2 border-[#C9A84C]/70 pointer-events-none z-10" />
-              <div className="absolute -bottom-3 -right-3 w-10 h-10 border-b-2 border-r-2 border-[#C9A84C]/70 pointer-events-none z-10" />
+              {/* Luminous Portrait Halo */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-[#C9A84C]/25 via-[#C9A84C]/5 to-transparent blur-2xl pointer-events-none rounded-xl" />
+
+              {/* Gold corner frames with subtle animated breath */}
+              <motion.div
+                animate={{ opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute -top-2.5 -left-2.5 w-8 h-8 sm:w-10 sm:h-10 border-t-2 border-l-2 border-[#C9A84C] pointer-events-none z-10"
+              />
+              <motion.div
+                animate={{ opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+                className="absolute -bottom-2.5 -right-2.5 w-8 h-8 sm:w-10 sm:h-10 border-b-2 border-r-2 border-[#C9A84C] pointer-events-none z-10"
+              />
 
               <div className="relative overflow-hidden bg-[#111] border border-white/15 aspect-[3/4] shadow-[0_24px_48px_-12px_rgba(0,0,0,0.8)] rounded-sm">
                 <img
