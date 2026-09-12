@@ -15,7 +15,7 @@ export const AcademicArchive: React.FC = () => {
           <h2 className="font-heading font-bold text-white tracking-tight mt-1" style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.5rem)' }}>
             Academic Archive
           </h2>
-          <div className="mt-4 w-10 h-[2px] bg-gradient-to-r from-[#C9A84C] to-transparent" />
+          <div className="mt-4 w-10 h-[2px] bg-white/60" />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
@@ -26,9 +26,9 @@ export const AcademicArchive: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.09 }}
-              className="bg-[#0C0C0C] border border-white/12 p-5 flex flex-col justify-between group hover:border-[#C9A84C]/30 transition-all text-left relative overflow-hidden rounded-sm"
+              className="bg-[#0C0C0C] border border-white/12 p-5 flex flex-col justify-between group hover:border-white/30 transition-all text-left relative overflow-hidden rounded-sm"
             >
-              <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+              <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
               <div>
                 <div className="flex items-center justify-between font-ui text-[0.58rem] text-[#5E5D58] uppercase tracking-wider mb-3">
@@ -67,13 +67,13 @@ export const AcademicArchive: React.FC = () => {
             {/* Bar Memberships */}
             <div className="bg-[#0C0C0C] border border-white/12 p-6 rounded-sm">
               <div className="flex items-center gap-2.5 mb-5">
-                <Award className="w-4 h-4 text-[#C9A84C]" />
+                <Award className="w-4 h-4 text-white" />
                 <h4 className="font-ui text-[0.62rem] font-bold tracking-[0.2em] uppercase text-[#9B9790]">Bar Memberships</h4>
               </div>
               <div className="space-y-4">
                 {BAR_MEMBERSHIPS.map((mem, i) => (
                   <div key={i} className="pb-3 border-b border-white/8 last:border-0 last:pb-0">
-                    <div className="font-ui text-[0.58rem] font-bold text-[#C9A84C] uppercase tracking-wider mb-0.5">{mem.role}</div>
+                    <div className="font-ui text-[0.58rem] font-bold text-white/60 uppercase tracking-wider mb-0.5">{mem.role}</div>
                     <div className="font-heading text-[0.9rem] font-bold text-white leading-snug">{mem.organization}</div>
                   </div>
                 ))}
@@ -84,7 +84,7 @@ export const AcademicArchive: React.FC = () => {
             <div className="space-y-6">
               <div className="bg-[#0C0C0C] border border-white/12 p-6 rounded-sm">
                 <div className="flex items-center gap-2.5 mb-5">
-                  <Building2 className="w-4 h-4 text-[#C9A84C]" />
+                  <Building2 className="w-4 h-4 text-white" />
                   <h4 className="font-ui text-[0.62rem] font-bold tracking-[0.2em] uppercase text-[#9B9790]">Civic Affiliations</h4>
                 </div>
                 <div className="space-y-2.5">

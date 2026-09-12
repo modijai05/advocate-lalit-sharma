@@ -20,7 +20,7 @@ export const LegalInsightsSection: React.FC = () => {
           <p className="font-ui text-[0.72rem] text-[#9B9790] uppercase tracking-[0.18em] mt-2">
             Educational roadmaps on adjudicatory progression in Rajasthan
           </p>
-          <div className="mt-4 w-10 h-[2px] bg-gradient-to-r from-[#C9A84C] to-transparent" />
+          <div className="mt-4 w-10 h-[2px] bg-white/60" />
         </div>
 
         {/* Grid */}

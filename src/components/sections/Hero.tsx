@@ -10,22 +10,22 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
   return (
     <section
-      className="relative min-h-[100svh] w-full bg-[#0A0A0A] text-[#F0EEE8] flex items-center overflow-hidden pt-20 pb-12"
+      className="relative min-h-[100svh] w-full bg-[#050505] text-[#FFFFFF] flex items-center overflow-hidden pt-20 pb-12"
       aria-label="Advocate Lalit Sharma — Hero"
     >
-      {/* Ambient background glows */}
-      <div className="absolute top-1/4 -left-32 w-80 h-80 bg-[#C9A84C]/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/3 -right-20 w-96 h-96 bg-[#C9A84C]/12 rounded-full blur-[140px] pointer-events-none" />
-
-      {/* Grid backdrop */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-25"
-        style={{
-          backgroundImage: 'linear-gradient(to right,#1e1e1e 1px,transparent 1px),linear-gradient(to bottom,#1e1e1e 1px,transparent 1px)',
-          backgroundSize: '5rem 5rem'
-        }}
-      />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_50%,transparent_50%,rgba(10,10,10,0.65))] pointer-events-none" />
+      {/* Real-life Law Library Ambient Backdrop */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <motion.img
+          initial={{ scale: 1.08, opacity: 0.12 }}
+          animate={{ scale: 1, opacity: 0.18 }}
+          transition={{ duration: 3, ease: 'easeOut' }}
+          src="/assets/images/law-library-books.jpg"
+          alt="Law Library Background"
+          className="w-full h-full object-cover object-center filter grayscale contrast-125"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-[#050505]/95" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#050505_90%)]" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[calc(100svh-8rem)]">
@@ -40,8 +40,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
               transition={{ duration: 0.55, delay: 0.1 }}
               className="flex items-center gap-3 mb-6"
             >
-              <span className="inline-block w-6 h-[2px] bg-[#C9A84C]" />
-              <span className="font-ui text-[0.62rem] font-bold tracking-[0.24em] text-[#C9A84C] uppercase">
+              <span className="inline-block w-6 h-[1.5px] bg-white" />
+              <span className="font-ui text-[0.62rem] font-bold tracking-[0.24em] text-neutral-300 uppercase">
                 Advocate · Rajasthan High Court, Jaipur
               </span>
             </motion.div>
@@ -56,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
                 style={{ fontSize: 'clamp(2.6rem, 7vw, 5.5rem)' }}
               >
                 LALIT<br />
-                <span className="font-heading italic font-light" style={{ color: '#C9A84C', fontSize: '0.72em' }}>
+                <span className="font-heading italic font-light text-neutral-300" style={{ fontSize: '0.72em' }}>
                   SHARMA
                 </span>
               </motion.h1>
@@ -69,7 +69,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
               transition={{ duration: 0.65, delay: 0.42 }}
               className="max-w-lg mb-6"
             >
-              <p className="font-serif text-[1rem] sm:text-[1.1rem] leading-[1.65] text-[#E8E5DC] italic border-l-2 border-[#C9A84C] pl-4">
+              <p className="font-serif text-[1rem] sm:text-[1.1rem] leading-[1.65] text-neutral-300 italic border-l-2 border-white pl-4">
                 22+ years of practice before the Rajasthan High Court — Civil, Constitutional, Criminal, Revenue &amp; Family Law.
               </p>
             </motion.div>
@@ -79,16 +79,16 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.55, delay: 0.62 }}
-              className="flex flex-wrap items-center gap-4 font-ui text-[0.78rem] text-[#D9D6CD] mb-8 pb-6 border-b border-white/10"
+              className="flex flex-wrap items-center gap-4 font-ui text-[0.78rem] text-neutral-300 mb-8 pb-6 border-b border-white/12"
             >
               <div className="flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#C9A84C]" strokeWidth={2} />
+                <ShieldCheck className="w-3.5 h-3.5 text-white" strokeWidth={2} />
                 <span><strong className="text-white">Enrolment:</strong> {CLIENT_PROFILE.enrolmentNo}</span>
               </div>
               <div className="w-px h-3 bg-white/20 hidden sm:block" />
               <div><strong className="text-white">Chamber</strong> 259, Block-E</div>
               <div className="w-px h-3 bg-white/20 hidden sm:block" />
-              <div className="text-[#9B9790]">Bar Council of Rajasthan</div>
+              <div className="text-neutral-400">Bar Council of Rajasthan</div>
             </motion.div>
 
             {/* CTAs */}
@@ -101,7 +101,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
               <button
                 onClick={onExploreClick}
                 id="hero-explore-profile-button"
-                className="btn-gold rounded-sm shadow-xl shadow-[#C9A84C]/15 group cursor-pointer"
+                className="btn-gold rounded-sm shadow-xl group cursor-pointer"
               >
                 <span>Explore Profile</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -109,7 +109,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
 
               <a
                 href="#practice"
-                className="font-ui inline-flex items-center gap-2 text-[0.72rem] font-bold tracking-[0.15em] uppercase text-[#D9D6CD] hover:text-[#C9A84C] transition-colors py-1 border-b border-transparent hover:border-[#C9A84C]/60"
+                className="btn-outline font-ui inline-flex items-center gap-2 text-[0.72rem] font-bold tracking-[0.15em] uppercase text-white hover:text-white transition-colors py-2 px-4 border border-white/20 hover:border-white rounded-sm"
               >
                 <span>Practice Areas</span>
                 <ArrowDown className="w-3.5 h-3.5" />
@@ -125,36 +125,33 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
               transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
               className="relative w-full max-w-[260px] sm:max-w-[320px] lg:max-w-none group"
             >
-              {/* Luminous Portrait Halo */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-[#C9A84C]/25 via-[#C9A84C]/5 to-transparent blur-2xl pointer-events-none rounded-xl" />
-
-              {/* Gold corner frames with subtle animated breath */}
+              {/* Corner frames */}
               <motion.div
                 animate={{ opacity: [0.6, 1, 0.6] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-2.5 -left-2.5 w-8 h-8 sm:w-10 sm:h-10 border-t-2 border-l-2 border-[#C9A84C] pointer-events-none z-10"
+                className="absolute -top-2.5 -left-2.5 w-8 h-8 sm:w-10 sm:h-10 border-t-2 border-l-2 border-white pointer-events-none z-10"
               />
               <motion.div
                 animate={{ opacity: [0.6, 1, 0.6] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-                className="absolute -bottom-2.5 -right-2.5 w-8 h-8 sm:w-10 sm:h-10 border-b-2 border-r-2 border-[#C9A84C] pointer-events-none z-10"
+                className="absolute -bottom-2.5 -right-2.5 w-8 h-8 sm:w-10 sm:h-10 border-b-2 border-r-2 border-white pointer-events-none z-10"
               />
 
-              <div className="relative overflow-hidden bg-[#111] border border-white/15 aspect-[3/4] shadow-[0_24px_48px_-12px_rgba(0,0,0,0.8)] rounded-sm">
+              <div className="relative overflow-hidden bg-[#111] border border-white/20 aspect-[3/4] shadow-[0_24px_48px_-12px_rgba(0,0,0,0.9)] rounded-sm">
                 <img
                   src="/assets/images/advocate-lalit-sharma.jpg"
                   alt="Advocate Lalit Sharma, Rajasthan High Court, Jaipur"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-top filter grayscale contrast-105"
                   loading="eager"
                   fetchPriority="high"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/85 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-transparent to-transparent pointer-events-none" />
 
                 {/* Caption */}
                 <div className="absolute bottom-3 left-3 right-3">
-                  <div className="bg-black/75 backdrop-blur-sm border border-[#C9A84C]/30 px-3 py-2 flex items-center justify-between rounded-sm">
-                    <span className="font-heading text-[0.75rem] font-bold text-white">Advocate Lalit Sharma</span>
-                    <span className="font-ui text-[0.58rem] font-semibold tracking-wider text-[#C9A84C] uppercase">Ch. 259</span>
+                  <div className="bg-black/85 backdrop-blur-md border border-white/20 px-3.5 py-2 flex items-center justify-between rounded-sm shadow-lg">
+                    <span className="font-heading text-[0.78rem] font-bold text-white">Advocate Lalit Sharma</span>
+                    <span className="font-ui text-[0.58rem] font-semibold tracking-wider text-neutral-300 uppercase">Ch. 259</span>
                   </div>
                 </div>
               </div>
@@ -163,14 +160,14 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-4 flex items-center justify-between border-t border-white/8 mt-4">
-          <div className="flex items-center gap-2 font-ui text-[0.6rem] font-semibold tracking-[0.18em] text-[#9B9790] uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C] animate-pulse" />
+        <div className="pt-4 flex items-center justify-between border-t border-white/10 mt-4">
+          <div className="flex items-center gap-2 font-ui text-[0.6rem] font-semibold tracking-[0.18em] text-neutral-400 uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             <span>High Court of Judicature for Rajasthan</span>
           </div>
           <a
             href="#at-the-bar"
-            className="hidden sm:flex items-center gap-1.5 font-ui text-[0.6rem] font-semibold tracking-wider text-[#9B9790] hover:text-[#C9A84C] uppercase transition-colors"
+            className="hidden sm:flex items-center gap-1.5 font-ui text-[0.6rem] font-semibold tracking-wider text-neutral-400 hover:text-white uppercase transition-colors"
           >
             <span>Scroll</span>
             <ArrowDown className="w-3 h-3 animate-bounce" />

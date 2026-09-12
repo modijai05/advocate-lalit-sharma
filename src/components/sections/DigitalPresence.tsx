@@ -52,7 +52,7 @@ export const DigitalPresence: React.FC = () => {
             Verified Digital Channels
           </h2>
           <div className="mt-3 inline-flex items-center gap-1.5 text-[0.68rem] font-ui text-[#E2DFD8] bg-white/[0.05] px-3 py-1.5 border border-white/10 rounded-sm">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <ShieldCheck className="w-3.5 h-3.5 text-white" />
             <span>Official public profiles — no promotional claims</span>
           </div>
         </div>
@@ -85,7 +85,7 @@ export const DigitalPresence: React.FC = () => {
                 <h3 className="font-heading text-[1.1rem] text-white font-semibold tracking-wide">{ch.name}</h3>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-white/10 text-[0.68rem] font-ui font-bold tracking-wider uppercase text-[#B4B0A6] group-hover:text-[#D4AF37] transition-colors">
+              <div className="pt-4 mt-4 border-t border-white/10 text-[0.68rem] font-ui font-bold tracking-wider uppercase text-[#B4B0A6] group-hover:text-white transition-colors">
                 {ch.callout} ↗
               </div>
             </motion.a>

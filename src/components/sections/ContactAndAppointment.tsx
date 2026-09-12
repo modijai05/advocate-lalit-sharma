@@ -153,7 +153,7 @@ export const ContactAndAppointment: React.FC = () => {
                 href={CLIENT_PROFILE.locationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 font-ui text-[0.7rem] text-[#C9A84C] hover:text-[#E5C368] transition-colors"
+                className="inline-flex items-center gap-1.5 font-ui text-[0.7rem] text-white/70 hover:text-white transition-colors"
               >
                 <ExternalLink className="w-3 h-3" />
                 <span>View on Google Maps ↗</span>

@@ -20,7 +20,7 @@ const INVOLVEMENTS: InvolvementItem[] = [
   {
     id: 'union',
     badge: 'Union Empanelment',
-    badgeColor: 'from-[#C9A84C] to-[#E5C368]',
+    badgeColor: 'from-neutral-200 to-white',
     title: 'Senior Panel Counsel — Union of India',
     authority: 'Ministry of Law & Justice, Government of India',
     ref: 'Gazette Notification #19003-200002081',
@@ -128,9 +128,9 @@ export const PublicInvolvementsSection: React.FC = () => {
       id="involvements"
       className="relative bg-[#070707] text-[#F3F2EE] py-16 sm:py-24 border-b border-white/10 overflow-hidden"
     >
-      {/* Ambient glow */}
-      <div className="absolute top-0 right-1/3 w-80 h-80 bg-[#C9A84C]/4 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-[#38BDF8]/4 rounded-full blur-3xl pointer-events-none" />
+      {/* Ambient depth */}
+      <div className="absolute top-0 right-1/3 w-80 h-80 bg-white/[0.015] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-white/[0.01] rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -140,7 +140,7 @@ export const PublicInvolvementsSection: React.FC = () => {
             Public Records &amp; Empanelments
           </h2>
           <div className="mt-3 inline-flex items-center gap-1.5 text-[0.68rem] font-ui text-[#E2DFD8] bg-white/[0.04] px-3 py-1.5 border border-white/10 rounded-sm">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#C9A84C]" />
+            <ShieldCheck className="w-3.5 h-3.5 text-white" />
             <span>Verified official documentation — Advocate Lalit Sharma, Rajasthan High Court</span>
           </div>
         </div>
@@ -155,7 +155,7 @@ export const PublicInvolvementsSection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.09 }}
               onClick={() => setSelectedItem(item)}
-              className="group bg-[#111] border border-white/10 hover:border-[#C9A84C]/40 rounded-xl overflow-hidden shadow-xl transition-all duration-300 flex flex-col cursor-pointer"
+              className="group bg-[#111] border border-white/10 hover:border-white/35 rounded-xl overflow-hidden shadow-xl transition-all duration-300 flex flex-col cursor-pointer"
             >
               {/* Preview Image with Fullscreen Action */}
               <div className="relative h-40 overflow-hidden bg-[#1A1A18]">
@@ -165,7 +165,7 @@ export const PublicInvolvementsSection: React.FC = () => {
                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 brightness-90 group-hover:brightness-100"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-black/30 pointer-events-none" />
-                <span className={`absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wider uppercase text-black bg-gradient-to-r ${item.badgeColor} shadow-md pointer-events-none`}>
+                <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wider uppercase text-black bg-white shadow-md pointer-events-none">
                   {item.badge}
                 </span>
 
@@ -181,7 +181,7 @@ export const PublicInvolvementsSection: React.FC = () => {
                       authority: item.authority,
                     })
                   }}
-                  className="absolute top-3 right-3 px-2 py-1 bg-black/80 hover:bg-[#C9A84C] text-white hover:text-black border border-white/20 rounded-md font-ui text-[0.58rem] font-bold tracking-wider uppercase shadow-md transition-all duration-200 flex items-center gap-1 backdrop-blur-sm z-10 cursor-pointer"
+                  className="absolute top-3 right-3 px-2 py-1 bg-black/80 hover:bg-white text-white hover:text-black border border-white/20 rounded-md font-ui text-[0.58rem] font-bold tracking-wider uppercase shadow-md transition-all duration-200 flex items-center gap-1 backdrop-blur-sm z-10 cursor-pointer"
                   title="View image full screen"
                   aria-label={`View ${item.title} image on full screen`}
                 >
@@ -193,7 +193,7 @@ export const PublicInvolvementsSection: React.FC = () => {
               {/* Card Content */}
               <div className="p-5 flex flex-col flex-1">
                 <div className="font-ui text-[0.58rem] font-bold tracking-[0.18em] text-[#9B9790] uppercase mb-2">{item.authority}</div>
-                <h3 className="font-heading text-[0.95rem] font-bold text-white leading-snug mb-2 group-hover:text-[#F5E6AB] transition-colors">
+                <h3 className="font-heading text-[0.95rem] font-bold text-white leading-snug mb-2 group-hover:text-[#E8E8E8] transition-colors">
                   {item.title}
                 </h3>
                 <p className="font-ui text-[0.8rem] text-[#B4B0A6] leading-[1.65] line-clamp-2 mb-4 flex-1">
@@ -201,7 +201,7 @@ export const PublicInvolvementsSection: React.FC = () => {
                 </p>
                 <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/10">
                   <span className="font-ui text-[0.62rem] text-[#5E5D58]">{item.ref}</span>
-                  <span className="font-ui text-[0.65rem] text-[#C9A84C] font-bold flex items-center gap-1">
+                  <span className="font-ui text-[0.65rem] text-white/70 font-bold flex items-center gap-1">
                     Details <ChevronRight className="w-3 h-3" />
                   </span>
                 </div>
@@ -260,7 +260,7 @@ export const PublicInvolvementsSection: React.FC = () => {
                   <X className="w-4 h-4" />
                 </button>
 
-                <span className={`absolute bottom-4 left-5 px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wider uppercase text-black bg-gradient-to-r ${selectedItem.badgeColor} pointer-events-none`}>
+                <span className="absolute bottom-4 left-5 px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wider uppercase text-black bg-white pointer-events-none">
                   {selectedItem.badge}
                 </span>
 
@@ -276,7 +276,7 @@ export const PublicInvolvementsSection: React.FC = () => {
                       authority: selectedItem.authority,
                     })
                   }}
-                  className="absolute bottom-3 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-black/80 hover:bg-[#C9A84C] text-white hover:text-black border border-white/30 hover:border-[#C9A84C] rounded-md font-ui text-[0.65rem] font-bold uppercase tracking-wider shadow-lg transition-all backdrop-blur-md cursor-pointer z-10"
+                  className="absolute bottom-3 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-black/80 hover:bg-white text-white hover:text-black border border-white/30 hover:border-white rounded-md font-ui text-[0.65rem] font-bold uppercase tracking-wider shadow-lg transition-all backdrop-blur-md cursor-pointer z-10"
                 >
                   <Maximize2 className="w-3 h-3" />
                   <span>Full Screen</span>
@@ -292,7 +292,7 @@ export const PublicInvolvementsSection: React.FC = () => {
                 <div className="space-y-2 mb-5">
                   {selectedItem.points.map((pt, i) => (
                     <div key={i} className="flex items-start gap-2 text-[0.8rem] font-ui text-[#D9D6CD]">
-                      <ChevronRight className="w-3.5 h-3.5 text-[#C9A84C] shrink-0 mt-0.5" />
+                      <ChevronRight className="w-3.5 h-3.5 text-white/60 shrink-0 mt-0.5" />
                       <span>{pt}</span>
                     </div>
                   ))}
@@ -305,7 +305,7 @@ export const PublicInvolvementsSection: React.FC = () => {
                       href={selectedItem.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 font-ui text-[0.68rem] font-bold text-[#C9A84C] hover:text-[#E5C368] transition-colors"
+                      className="inline-flex items-center gap-1.5 font-ui text-[0.68rem] font-bold text-white/70 hover:text-white transition-colors"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       <span>Official Source</span>
@@ -334,7 +334,7 @@ export const PublicInvolvementsSection: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center gap-3 min-w-0">
-                <span className="px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wider uppercase text-black bg-[#C9A84C] shrink-0">
+                <span className="px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wider uppercase text-black bg-white shrink-0">
                   {fullscreenImage.badge}
                 </span>
                 <div className="min-w-0">
@@ -361,7 +361,7 @@ export const PublicInvolvementsSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setFullscreenImage(null)}
-                  className="p-2 bg-white/10 hover:bg-[#C9A84C] text-white hover:text-black rounded-sm border border-white/20 transition-colors cursor-pointer"
+                  className="p-2 bg-white/10 hover:bg-white text-white hover:text-black rounded-sm border border-white/20 transition-colors cursor-pointer"
                   aria-label="Close fullscreen view"
                 >
                   <X className="w-5 h-5" />
