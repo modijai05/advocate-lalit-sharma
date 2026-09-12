@@ -125,99 +125,128 @@ export const ContactAndAppointment: React.FC = () => {
   }
 
   return (
-    <section id="contact" className="relative bg-[#050505] text-[#F7F7F5] py-16 sm:py-24 border-b border-white/10">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center mb-10">
-          <SectionLabel number="12" title="Contact & Appointments" theme="dark" />
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white tracking-tight">
-            Chambers & Enquiries
+    <section id="contact" className="relative bg-[#F8FAFC] text-slate-900 py-16 sm:py-24 border-b border-slate-200 overflow-hidden">
+      {/* Soft ambient background glows */}
+      <div className="absolute top-1/4 -right-20 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-amber-100/50 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex flex-col items-center text-center mb-12">
+          <SectionLabel number="12" title="Contact & Appointments" theme="light" />
+          <h2 className="font-heading font-extrabold text-slate-900 tracking-tight text-3xl sm:text-4xl mt-1">
+            Chambers &amp; Consultations
           </h2>
-          <p className="text-xs sm:text-sm font-mono tracking-[0.15em] text-[#8E8D88] uppercase mt-2">
-            Rajasthan High Court & Residential Office Consultation
+          <p className="font-ui text-sm sm:text-base text-slate-600 max-w-lg mt-3">
+            Rajasthan High Court Campus Chamber &amp; Residential Office Coordination.
           </p>
+          <div className="mt-4 w-16 h-1 bg-gradient-to-r from-blue-600 via-amber-500 to-emerald-500 rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          {/* Left Column: Official Contact Coordinates */}
-          <div className="space-y-4 text-left">
-            {/* Chamber Box */}
-            <div className="bg-[#0C0C0C] border border-white/15 p-5 space-y-3">
-              <div className="flex items-center gap-2.5 font-ui text-[0.58rem] font-bold tracking-widest text-[#E7E6E1] uppercase">
-                <MapPin className="w-3.5 h-3.5 text-[#FFFFFF]" />
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Left Column: Official Contact Coordinates (Cols 1-5) */}
+          <div className="md:col-span-5 space-y-4 text-left">
+            {/* High Court Chamber Box */}
+            <div className="card-light p-6 rounded-xl border border-slate-200/90 shadow-sm hover:border-blue-300 transition-all hover-lift">
+              <div className="flex items-center gap-2.5 font-ui text-xs font-bold tracking-wider text-blue-600 uppercase mb-2">
+                <MapPin className="w-4 h-4 text-blue-600" />
                 <span>High Court Chamber</span>
               </div>
-              <div className="font-heading text-[0.95rem] text-[#FFFFFF] leading-snug">
+              <div className="font-heading text-lg font-bold text-slate-900 leading-snug mb-3">
                 {CLIENT_PROFILE.chamber}
               </div>
               <a
                 href={CLIENT_PROFILE.locationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 font-ui text-[0.7rem] text-white/70 hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-ui font-bold text-blue-600 hover:text-blue-800 transition-colors"
               >
-                <ExternalLink className="w-3 h-3" />
-                <span>View on Google Maps ↗</span>
+                <span>View on Google Maps</span>
+                <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
 
             {/* Residential Office Box */}
-            <div className="bg-[#0C0C0C] border border-white/15 p-5 space-y-2">
-              <div className="flex items-center gap-2.5 font-ui text-[0.58rem] font-bold tracking-widest text-[#8E8D88] uppercase">
-                <MapPin className="w-3.5 h-3.5 text-[#E7E6E1]" />
+            <div className="card-light p-6 rounded-xl border border-slate-200/90 shadow-sm hover:border-amber-300 transition-all hover-lift">
+              <div className="flex items-center gap-2.5 font-ui text-xs font-bold tracking-wider text-amber-600 uppercase mb-2">
+                <MapPin className="w-4 h-4 text-amber-600" />
                 <span>Residential Office</span>
               </div>
-              <div className="font-ui text-[0.88rem] text-[#FFFFFF] leading-relaxed">
+              <div className="font-ui text-sm text-slate-700 leading-relaxed">
                 {CLIENT_PROFILE.residentialOffice}
               </div>
             </div>
 
-            {/* Contact Details */}
-            <div className="bg-[#0C0C0C] border border-white/15 p-5 space-y-4">
-              <div className="flex items-center gap-3">
-                <Phone className="w-3.5 h-3.5 text-[#4ADE80] shrink-0" />
+            {/* Direct Connect Details */}
+            <div className="card-light p-6 rounded-xl border border-slate-200/90 shadow-sm space-y-4">
+              {/* Phone */}
+              <div className="flex items-center gap-3.5">
+                <div className="p-2.5 bg-blue-50 rounded-lg border border-blue-200">
+                  <Phone className="w-4 h-4 text-blue-600" />
+                </div>
                 <div>
-                  <div className="font-ui text-[0.55rem] text-[#8E8D88] uppercase tracking-wider">Phone</div>
-                  <a href={`tel:${CLIENT_PROFILE.phone.replace(/\s+/g, '')}`} className="font-ui text-[0.9rem] text-[#FFFFFF] hover:text-[#F0EEE8] transition-colors">{CLIENT_PROFILE.phone}</a>
+                  <div className="font-ui text-[0.65rem] font-bold text-slate-400 uppercase tracking-wider">Direct Telephone</div>
+                  <a href={`tel:${CLIENT_PROFILE.phone.replace(/\s+/g, '')}`} className="font-ui text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors">
+                    {CLIENT_PROFILE.phone}
+                  </a>
                 </div>
               </div>
-              <div className="h-px bg-white/8" />
-              <div className="flex items-center gap-3">
-                <MessageSquare className="w-3.5 h-3.5 text-[#25D366] shrink-0" />
+
+              <div className="h-px bg-slate-100" />
+
+              {/* WhatsApp */}
+              <div className="flex items-center gap-3.5">
+                <div className="p-2.5 bg-emerald-50 rounded-lg border border-emerald-200">
+                  <MessageSquare className="w-4 h-4 text-emerald-600" />
+                </div>
                 <div>
-                  <div className="font-ui text-[0.55rem] text-[#8E8D88] uppercase tracking-wider">WhatsApp</div>
-                  <a href={`https://wa.me/${CLIENT_PROFILE.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer" className="font-ui text-[0.9rem] text-[#FFFFFF] hover:text-[#F0EEE8] transition-colors">{CLIENT_PROFILE.whatsapp}</a>
+                  <div className="font-ui text-[0.65rem] font-bold text-slate-400 uppercase tracking-wider">WhatsApp Direct</div>
+                  <a href={`https://wa.me/${CLIENT_PROFILE.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer" className="font-ui text-sm font-bold text-emerald-700 hover:text-emerald-800 transition-colors">
+                    {CLIENT_PROFILE.whatsapp}
+                  </a>
                 </div>
               </div>
-              <div className="h-px bg-white/8" />
-              <div className="flex items-center gap-3">
-                <Mail className="w-3.5 h-3.5 text-[#9B9790] shrink-0" />
+
+              <div className="h-px bg-slate-100" />
+
+              {/* Email */}
+              <div className="flex items-center gap-3.5">
+                <div className="p-2.5 bg-purple-50 rounded-lg border border-purple-200">
+                  <Mail className="w-4 h-4 text-purple-600" />
+                </div>
                 <div>
-                  <div className="font-ui text-[0.55rem] text-[#8E8D88] uppercase tracking-wider">Email</div>
-                  <a href={`mailto:${CLIENT_PROFILE.email}`} className="font-ui text-[0.85rem] text-[#FFFFFF] hover:text-[#F0EEE8] transition-colors break-all">{CLIENT_PROFILE.email}</a>
+                  <div className="font-ui text-[0.65rem] font-bold text-slate-400 uppercase tracking-wider">Official Email</div>
+                  <a href={`mailto:${CLIENT_PROFILE.email}`} className="font-ui text-sm font-semibold text-slate-900 hover:text-purple-600 transition-colors break-all">
+                    {CLIENT_PROFILE.email}
+                  </a>
                 </div>
               </div>
-              <div className="h-px bg-white/8" />
-              <div className="flex items-center gap-3">
-                <Clock className="w-3.5 h-3.5 text-[#9B9790] shrink-0" />
+
+              <div className="h-px bg-slate-100" />
+
+              {/* Chamber Timings */}
+              <div className="flex items-center gap-3.5">
+                <div className="p-2.5 bg-amber-50 rounded-lg border border-amber-200">
+                  <Clock className="w-4 h-4 text-amber-600" />
+                </div>
                 <div>
-                  <div className="font-ui text-[0.55rem] text-[#8E8D88] uppercase tracking-wider">Timings</div>
-                  <div className="font-ui text-[0.85rem] text-[#B8B7B1]">{chamberTimings}</div>
+                  <div className="font-ui text-[0.65rem] font-bold text-slate-400 uppercase tracking-wider">Consultation Hours</div>
+                  <div className="font-ui text-xs text-slate-700 font-medium">{chamberTimings}</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Forms Panel */}
-          <div className="bg-[#0C0C0C] border border-white/15 p-5 sm:p-7 text-left relative">
+          {/* Right Column: Interactive Forms Panel (Cols 6-12) */}
+          <div className="md:col-span-7 card-light p-6 sm:p-9 rounded-2xl border border-slate-200/90 shadow-xl text-left relative">
             {/* Tab Selection */}
-            <div className="flex items-center gap-2 border-b border-white/10 pb-4 mb-8">
+            <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-5 mb-8">
               <button
                 type="button"
                 onClick={() => setActiveTab('enquiry')}
-                className={`px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all cursor-pointer ${
+                className={`px-5 py-2.5 rounded-full text-xs font-ui font-bold tracking-wider uppercase transition-all cursor-pointer ${
                   activeTab === 'enquiry'
-                    ? 'bg-[#F7F7F5] text-[#050505] font-semibold'
-                    : 'text-[#8E8D88] hover:text-white'
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
                 Send Enquiry
@@ -225,19 +254,19 @@ export const ContactAndAppointment: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setActiveTab('appointment')}
-                className={`px-4 py-2 text-xs font-mono tracking-widest uppercase transition-all cursor-pointer ${
+                className={`px-5 py-2.5 rounded-full text-xs font-ui font-bold tracking-wider uppercase transition-all cursor-pointer ${
                   activeTab === 'appointment'
-                    ? 'bg-[#F7F7F5] text-[#050505] font-semibold'
-                    : 'text-[#8E8D88] hover:text-white'
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
-                Request Appointment
+                Schedule Consultation
               </button>
             </div>
 
             {/* TAB 1: General Enquiry Form */}
             {activeTab === 'enquiry' && (
-              <form onSubmit={handleEnquirySubmit} className="space-y-6">
+              <form onSubmit={handleEnquirySubmit} className="space-y-5">
                 {/* Bot Honeypot */}
                 <input
                   type="text"
@@ -249,24 +278,24 @@ export const ContactAndAppointment: React.FC = () => {
                   autoComplete="off"
                 />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="enquiry-name" className="block text-xs font-mono text-[#8E8D88] uppercase tracking-wider mb-2">
+                    <label htmlFor="enquiry-name" className="block text-xs font-ui font-bold text-slate-600 uppercase tracking-wider mb-2">
                       Full Name *
                     </label>
                     <input
                       id="enquiry-name"
                       type="text"
                       required
-                      placeholder="e.g. Ramesh Chandra"
+                      placeholder="Your Full Name"
                       value={enquiryData.name}
                       onChange={(e) => setEnquiryData({ ...enquiryData, name: e.target.value })}
-                      className="w-full bg-[#141414] border border-white/15 px-4 py-3 text-sm text-[#F7F7F5] focus:border-[#E7E6E1] focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="enquiry-phone" className="block text-xs font-mono text-[#8E8D88] uppercase tracking-wider mb-2">
+                    <label htmlFor="enquiry-phone" className="block text-xs font-ui font-bold text-slate-600 uppercase tracking-wider mb-2">
                       Phone Number *
                     </label>
                     <input
@@ -276,14 +305,14 @@ export const ContactAndAppointment: React.FC = () => {
                       placeholder="+91 98..."
                       value={enquiryData.phone}
                       onChange={(e) => setEnquiryData({ ...enquiryData, phone: e.target.value })}
-                      className="w-full bg-[#141414] border border-white/15 px-4 py-3 text-sm text-[#F7F7F5] focus:border-[#E7E6E1] focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="enquiry-email" className="block text-xs font-mono text-[#8E8D88] uppercase tracking-wider mb-2">
+                    <label htmlFor="enquiry-email" className="block text-xs font-ui font-bold text-slate-600 uppercase tracking-wider mb-2">
                       Email Address *
                     </label>
                     <input
@@ -293,61 +322,61 @@ export const ContactAndAppointment: React.FC = () => {
                       placeholder="name@domain.com"
                       value={enquiryData.email}
                       onChange={(e) => setEnquiryData({ ...enquiryData, email: e.target.value })}
-                      className="w-full bg-[#141414] border border-white/15 px-4 py-3 text-sm text-[#F7F7F5] focus:border-[#E7E6E1] focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="enquiry-matter" className="block text-xs font-mono text-[#8E8D88] uppercase tracking-wider mb-2">
+                    <label htmlFor="enquiry-matter" className="block text-xs font-ui font-bold text-slate-600 uppercase tracking-wider mb-2">
                       Nature of Matter *
                     </label>
                     <select
                       id="enquiry-matter"
                       value={enquiryData.matterType}
                       onChange={(e) => setEnquiryData({ ...enquiryData, matterType: e.target.value })}
-                      className="w-full bg-[#141414] border border-white/15 px-4 py-3 text-sm text-[#F7F7F5] focus:border-[#E7E6E1] focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                     >
                       <option value="Civil Litigation">Civil Litigation / Property</option>
                       <option value="Writ Petition">Writ Petition (Article 226 / 227)</option>
                       <option value="Criminal Proceedings">Criminal Proceedings / Bail / Quashing</option>
-                      <option value="Revenue & Land">Rajasthan Revenue & Land Law</option>
-                      <option value="Family & Matrimonial">Family & Matrimonial Dispute</option>
+                      <option value="Revenue & Land">Rajasthan Revenue &amp; Land Law</option>
+                      <option value="Family & Matrimonial">Family &amp; Matrimonial Dispute</option>
                       <option value="General Legal Enquiry">General Legal Enquiry</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="enquiry-message" className="block text-xs font-mono text-[#8E8D88] uppercase tracking-wider mb-2">
-                    Message / Brief Overview of Query *
+                  <label htmlFor="enquiry-message" className="block text-xs font-ui font-bold text-slate-600 uppercase tracking-wider mb-2">
+                    Message / Brief Overview *
                   </label>
                   <textarea
                     id="enquiry-message"
                     required
                     rows={4}
-                    placeholder="Provide a concise description of the query or procedural background..."
+                    placeholder="Provide a concise description of your query or procedural matter..."
                     value={enquiryData.message}
                     onChange={(e) => setEnquiryData({ ...enquiryData, message: e.target.value })}
-                    className="w-full bg-[#141414] border border-white/15 px-4 py-3 text-sm text-[#F7F7F5] focus:border-[#E7E6E1] focus:outline-none resize-y"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all resize-y"
                   />
                 </div>
 
-                <div className="text-xs text-[#8E8D88] font-mono leading-relaxed bg-[#111111] p-3 border border-white/5">
+                <div className="text-xs text-slate-500 font-ui leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-200/80">
                   "Submissions are general enquiries and do not create an attorney-client relationship."
                 </div>
 
                 {enquiryFeedback && (
                   <div
-                    className={`p-4 text-xs font-mono flex items-center gap-2 ${
+                    className={`p-4 text-xs font-ui rounded-lg flex items-center gap-2.5 ${
                       enquiryFeedback.success
-                        ? 'bg-white/10 text-[#FFFFFF] border border-white/20'
-                        : 'bg-red-950/40 text-red-300 border border-red-800'
+                        ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                        : 'bg-rose-50 text-rose-800 border border-rose-200'
                     }`}
                   >
                     {enquiryFeedback.success ? (
-                      <CheckCircle2 className="w-4 h-4 shrink-0 text-[#E7E6E1]" />
+                      <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
                     ) : (
-                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
                     )}
                     <span>{enquiryFeedback.message}</span>
                   </div>
@@ -356,13 +385,13 @@ export const ContactAndAppointment: React.FC = () => {
                 <button
                   type="submit"
                   disabled={enquiryLoading}
-                  className="w-full sm:w-auto px-8 py-4 bg-[#F7F7F5] text-[#050505] text-xs font-sans font-medium tracking-[0.2em] uppercase hover:bg-white transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="btn-vibrant-blue shimmer-hover w-full sm:w-auto shadow-lg flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   {enquiryLoading ? (
                     <span>TRANSMITTING...</span>
                   ) : (
                     <>
-                      <Send className="w-3.5 h-3.5" />
+                      <Send className="w-4 h-4" />
                       <span>SEND ENQUIRY</span>
                     </>
                   )}
@@ -372,7 +401,7 @@ export const ContactAndAppointment: React.FC = () => {
 
             {/* TAB 2: Appointment Booking Form */}
             {activeTab === 'appointment' && (
-              <form onSubmit={handleAppointmentSubmit} className="space-y-6">
+              <form onSubmit={handleAppointmentSubmit} className="space-y-5">
                 <input
                   type="text"
                   name="honeypot_apt"
@@ -383,24 +412,24 @@ export const ContactAndAppointment: React.FC = () => {
                   autoComplete="off"
                 />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="apt-name" className="block text-xs font-mono text-[#8E8D88] uppercase tracking-wider mb-2">
+                    <label htmlFor="apt-name" className="block text-xs font-ui font-bold text-slate-600 uppercase tracking-wider mb-2">
                       Full Name *
                     </label>
                     <input
                       id="apt-name"
                       type="text"
                       required
-                      placeholder="Your Name"
+                      placeholder="Your Full Name"
                       value={appointmentData.name}
                       onChange={(e) => setAppointmentData({ ...appointmentData, name: e.target.value })}
-                      className="w-full bg-[#141414] border border-white/15 px-4 py-3 text-sm text-[#F7F7F5] focus:border-[#E7E6E1] focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="apt-phone" className="block text-xs font-mono text-[#8E8D88] uppercase tracking-wider mb-2">
+                    <label htmlFor="apt-phone" className="block text-xs font-ui font-bold text-slate-600 uppercase tracking-wider mb-2">
                       Phone Number *
                     </label>
                     <input
@@ -410,15 +439,15 @@ export const ContactAndAppointment: React.FC = () => {
                       placeholder="+91..."
                       value={appointmentData.phone}
                       onChange={(e) => setAppointmentData({ ...appointmentData, phone: e.target.value })}
-                      className="w-full bg-[#141414] border border-white/15 px-4 py-3 text-sm text-[#F7F7F5] focus:border-[#E7E6E1] focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                   <div>
-                    <label htmlFor="apt-email" className="block text-xs font-mono text-[#8E8D88] uppercase tracking-wider mb-2">
-                      Email Address *
+                    <label htmlFor="apt-email" className="block text-xs font-ui font-bold text-slate-600 uppercase tracking-wider mb-2">
+                      Email *
                     </label>
                     <input
                       id="apt-email"
@@ -427,12 +456,12 @@ export const ContactAndAppointment: React.FC = () => {
                       placeholder="name@mail.com"
                       value={appointmentData.email}
                       onChange={(e) => setAppointmentData({ ...appointmentData, email: e.target.value })}
-                      className="w-full bg-[#141414] border border-white/15 px-4 py-3 text-sm text-[#F7F7F5] focus:border-[#E7E6E1] focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="apt-date" className="block text-xs font-mono text-[#8E8D88] uppercase tracking-wider mb-2">
+                    <label htmlFor="apt-date" className="block text-xs font-ui font-bold text-slate-600 uppercase tracking-wider mb-2">
                       Preferred Date *
                     </label>
                     <input
@@ -441,19 +470,19 @@ export const ContactAndAppointment: React.FC = () => {
                       required
                       value={appointmentData.preferredDate}
                       onChange={(e) => setAppointmentData({ ...appointmentData, preferredDate: e.target.value })}
-                      className="w-full bg-[#141414] border border-white/15 px-4 py-3 text-sm text-[#F7F7F5] focus:border-[#E7E6E1] focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="apt-time" className="block text-xs font-mono text-[#8E8D88] uppercase tracking-wider mb-2">
-                      Preferred Time Slot *
+                    <label htmlFor="apt-time" className="block text-xs font-ui font-bold text-slate-600 uppercase tracking-wider mb-2">
+                      Time Slot *
                     </label>
                     <select
                       id="apt-time"
                       value={appointmentData.preferredTime}
                       onChange={(e) => setAppointmentData({ ...appointmentData, preferredTime: e.target.value })}
-                      className="w-full bg-[#141414] border border-white/15 px-4 py-3 text-sm text-[#F7F7F5] focus:border-[#E7E6E1] focus:outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                     >
                       <option value="Morning (10:00 AM - 1:00 PM)">Morning (10:00 AM - 1:00 PM)</option>
                       <option value="Afternoon (2:00 PM - 4:30 PM)">Afternoon (2:00 PM - 4:30 PM)</option>
@@ -463,54 +492,54 @@ export const ContactAndAppointment: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="apt-matter" className="block text-xs font-mono text-[#8E8D88] uppercase tracking-wider mb-2">
+                  <label htmlFor="apt-matter" className="block text-xs font-ui font-bold text-slate-600 uppercase tracking-wider mb-2">
                     Nature of Matter *
                   </label>
                   <select
                     id="apt-matter"
                     value={appointmentData.matterType}
                     onChange={(e) => setAppointmentData({ ...appointmentData, matterType: e.target.value })}
-                    className="w-full bg-[#141414] border border-white/15 px-4 py-3 text-sm text-[#F7F7F5] focus:border-[#E7E6E1] focus:outline-none"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                   >
                     <option value="Civil Litigation">Civil Litigation / Property</option>
                     <option value="Writ Petition">Writ Petition (Article 226 / 227)</option>
                     <option value="Criminal Proceedings">Criminal Proceedings / Bail / Quashing</option>
-                    <option value="Revenue & Land">Rajasthan Revenue & Land Law</option>
-                    <option value="Family & Matrimonial">Family & Matrimonial Dispute</option>
+                    <option value="Revenue & Land">Rajasthan Revenue &amp; Land Law</option>
+                    <option value="Family & Matrimonial">Family &amp; Matrimonial Dispute</option>
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="apt-message" className="block text-xs font-mono text-[#8E8D88] uppercase tracking-wider mb-2">
+                  <label htmlFor="apt-message" className="block text-xs font-ui font-bold text-slate-600 uppercase tracking-wider mb-2">
                     Conference Agenda / Matter Context *
                   </label>
                   <textarea
                     id="apt-message"
                     required
                     rows={3}
-                    placeholder="Briefly state the context of consultation..."
+                    placeholder="Briefly describe the matter and background for the chamber consultation..."
                     value={appointmentData.message}
                     onChange={(e) => setAppointmentData({ ...appointmentData, message: e.target.value })}
-                    className="w-full bg-[#141414] border border-white/15 px-4 py-3 text-sm text-[#F7F7F5] focus:border-[#E7E6E1] focus:outline-none resize-y"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all resize-y"
                   />
                 </div>
 
-                <div className="text-xs text-[#8E8D88] font-mono leading-relaxed bg-[#111111] p-3 border border-white/5">
-                  "Appointment requests are subject to confirmation."
+                <div className="text-xs text-slate-500 font-ui leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-200/80">
+                  "Chamber consultations are scheduled in advance to ensure thorough case preparation."
                 </div>
 
                 {appointmentFeedback && (
                   <div
-                    className={`p-4 text-xs font-mono flex items-center gap-2 ${
+                    className={`p-4 text-xs font-ui rounded-lg flex items-center gap-2.5 ${
                       appointmentFeedback.success
-                        ? 'bg-white/10 text-[#FFFFFF] border border-white/20'
-                        : 'bg-red-950/40 text-red-300 border border-red-800'
+                        ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                        : 'bg-rose-50 text-rose-800 border border-rose-200'
                     }`}
                   >
                     {appointmentFeedback.success ? (
-                      <CheckCircle2 className="w-4 h-4 shrink-0 text-[#E7E6E1]" />
+                      <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
                     ) : (
-                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
                     )}
                     <span>{appointmentFeedback.message}</span>
                   </div>
@@ -519,14 +548,14 @@ export const ContactAndAppointment: React.FC = () => {
                 <button
                   type="submit"
                   disabled={appointmentLoading}
-                  className="w-full sm:w-auto px-8 py-4 bg-[#F7F7F5] text-[#050505] text-xs font-sans font-medium tracking-[0.2em] uppercase hover:bg-white transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="btn-vibrant-gold shimmer-hover w-full sm:w-auto shadow-lg flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   {appointmentLoading ? (
                     <span>PROCESSING...</span>
                   ) : (
                     <>
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>REQUEST APPOINTMENT</span>
+                      <Calendar className="w-4 h-4" />
+                      <span>SCHEDULE CONSULTATION</span>
                     </>
                   )}
                 </button>

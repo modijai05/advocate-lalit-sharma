@@ -42,16 +42,16 @@ export function AppContent() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#050505] text-[#FFFFFF] selection:bg-white selection:text-black">
-      {/* Dynamic Monochrome Scroll Progress Bar */}
+    <div className="relative min-h-screen bg-[#050816] text-[#FFFFFF] selection:bg-blue-600 selection:text-white">
+      {/* Dynamic Vibrant Scroll Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-white via-neutral-300 to-white z-50 origin-left shadow-[0_0_10px_rgba(255,255,255,0.8)] pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-blue-600 via-amber-500 to-emerald-400 z-50 origin-left shadow-[0_0_14px_rgba(59,130,246,0.8)] pointer-events-none"
         style={{ scaleX }}
       />
 
-      {/* Subtle Ambient Depth Orbs */}
-      <div className="fixed top-1/4 -left-32 w-80 h-80 bg-white/[0.02] rounded-full blur-3xl pointer-events-none z-0" />
-      <div className="fixed top-2/3 -right-32 w-88 h-88 bg-white/[0.02] rounded-full blur-3xl pointer-events-none z-0" />
+      {/* Subtle Ambient Colorful Orbs */}
+      <div className="fixed top-1/4 -left-32 w-96 h-96 bg-blue-600/[0.04] rounded-full blur-3xl pointer-events-none z-0" />
+      <div className="fixed top-2/3 -right-32 w-96 h-96 bg-amber-500/[0.03] rounded-full blur-3xl pointer-events-none z-0" />
 
       {/* 00: Initial Disclaimer Gate (Full-screen chamber entrance) */}
       <DisclaimerGate />

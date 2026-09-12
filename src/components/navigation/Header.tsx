@@ -82,19 +82,19 @@ export const Header: React.FC<HeaderProps> = ({
                 <a
                   key={item.href}
                   href={item.href}
-                  className="relative inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/25 shadow-sm font-ui text-[0.7rem] font-bold tracking-[0.12em] uppercase transition-all duration-200 group"
+                  className="relative inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-600/20 hover:bg-blue-600/30 text-sky-300 border border-blue-500/40 shadow-[0_0_12px_rgba(59,130,246,0.3)] font-ui text-[0.7rem] font-bold tracking-[0.12em] uppercase transition-all duration-200 group"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
                   <span>{item.label}</span>
                 </a>
               ) : (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="relative font-ui text-[0.72rem] font-semibold tracking-[0.14em] uppercase text-neutral-300 hover:text-white transition-colors duration-200 group py-1"
+                  className="relative font-ui text-[0.72rem] font-semibold tracking-[0.14em] uppercase text-slate-300 hover:text-white transition-colors duration-200 group py-1"
                 >
                   {item.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-white group-hover:w-full transition-all duration-300 origin-left" />
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-sky-400 to-amber-400 group-hover:w-full transition-all duration-300 origin-left" />
                 </a>
               )
             )}
@@ -105,10 +105,10 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Direct Chamber Line (2xl screens) */}
             <a
               href={`tel:${CLIENT_PROFILE.phone.replace(/\s+/g, '')}`}
-              className="hidden 2xl:flex items-center gap-1.5 px-3 py-2 text-[0.68rem] font-semibold font-ui tracking-wider uppercase text-neutral-300 hover:text-white border border-white/20 hover:border-white bg-white/[0.04] transition-all duration-200 rounded-sm"
+              className="hidden 2xl:flex items-center gap-1.5 px-3.5 py-2 text-[0.68rem] font-semibold font-ui tracking-wider uppercase text-slate-300 hover:text-white border border-white/20 hover:border-sky-400 bg-white/[0.04] transition-all duration-200 rounded-full"
               aria-label="Call Chamber 259"
             >
-              <Phone className="w-3.5 h-3.5 text-neutral-300" strokeWidth={2.5} />
+              <Phone className="w-3.5 h-3.5 text-emerald-400" strokeWidth={2.5} />
               <span>Chamber Direct</span>
             </a>
 
@@ -116,9 +116,9 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={onOpenAppointment}
               id="header-appointment-button"
-              className="btn-gold rounded-sm shadow-md py-2 px-4 text-[0.7rem] cursor-pointer shrink-0"
+              className="btn-vibrant-gold shimmer-hover py-2 px-5 text-[0.7rem] cursor-pointer shrink-0"
             >
-              <Calendar className="w-3.5 h-3.5" strokeWidth={2.5} />
+              <Calendar className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
               <span>Book Consultation</span>
             </button>
           </div>
@@ -127,17 +127,17 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-1.5 sm:gap-2 xl:hidden shrink-0">
             <button
               onClick={onOpenAppointment}
-              className="btn-gold py-1.5 px-2.5 sm:py-2 sm:px-3.5 text-[0.65rem] sm:text-[0.68rem] rounded-sm cursor-pointer shrink-0 flex items-center gap-1.5 shadow-sm active:scale-95 transition-transform"
+              className="btn-vibrant-gold py-1.5 px-3 sm:py-2 sm:px-4 text-[0.65rem] sm:text-[0.68rem] cursor-pointer shrink-0 flex items-center gap-1.5 shadow-md active:scale-95 transition-transform"
               aria-label="Schedule consultation"
             >
-              <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-black shrink-0" strokeWidth={2.5} />
+              <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white shrink-0" strokeWidth={2.5} />
               <span className="font-bold">Consult</span>
             </button>
 
             <button
               onClick={() => setIsMobileMenuOpen(true)}
               id="mobile-menu-open-button"
-              className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-white hover:text-white border border-white/20 bg-white/[0.06] hover:bg-white/10 rounded-sm focus-visible:outline-white transition-colors cursor-pointer shrink-0 active:scale-95"
+              className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-white hover:text-white border border-white/20 bg-white/[0.06] hover:bg-white/10 rounded-full focus-visible:outline-white transition-colors cursor-pointer shrink-0 active:scale-95"
               aria-label="Open navigation"
               aria-expanded={isMobileMenuOpen}
             >

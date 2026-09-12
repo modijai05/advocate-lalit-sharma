@@ -20,7 +20,7 @@ const INVOLVEMENTS: InvolvementItem[] = [
   {
     id: 'union',
     badge: 'Union Empanelment',
-    badgeColor: 'from-neutral-200 to-white',
+    badgeColor: 'from-[#F59E0B] to-[#D97706]',
     title: 'Senior Panel Counsel — Union of India',
     authority: 'Ministry of Law & Justice, Government of India',
     ref: 'Gazette Notification #19003-200002081',
@@ -126,27 +126,28 @@ export const PublicInvolvementsSection: React.FC = () => {
   return (
     <section
       id="involvements"
-      className="relative bg-[#070707] text-[#F3F2EE] py-16 sm:py-24 border-b border-white/10 overflow-hidden"
+      className="relative bg-[#060A18] text-[#F3F2EE] py-16 sm:py-24 border-b border-white/10 overflow-hidden"
     >
       {/* Ambient depth */}
-      <div className="absolute top-0 right-1/3 w-80 h-80 bg-white/[0.015] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-white/[0.01] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="flex flex-col items-center text-center mb-10">
+        <div className="flex flex-col items-center text-center mb-12">
           <SectionLabel number="09" title="Official Involvements" theme="dark" />
-          <h2 className="font-heading font-bold text-white tracking-tight mt-1" style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.5rem)' }}>
+          <h2 className="font-heading font-extrabold text-white tracking-tight mt-1 text-3xl sm:text-4xl">
             Public Records &amp; Empanelments
           </h2>
-          <div className="mt-3 inline-flex items-center gap-1.5 text-[0.68rem] font-ui text-[#E2DFD8] bg-white/[0.04] px-3 py-1.5 border border-white/10 rounded-sm">
-            <ShieldCheck className="w-3.5 h-3.5 text-white" />
+          <div className="mt-4 inline-flex items-center gap-2 text-xs font-ui text-slate-300 bg-white/[0.06] px-4 py-2 border border-white/15 rounded-full backdrop-blur-md">
+            <ShieldCheck className="w-4 h-4 text-emerald-400" />
             <span>Verified official documentation — Advocate Lalit Sharma, Rajasthan High Court</span>
           </div>
+          <div className="mt-4 w-16 h-1 bg-gradient-to-r from-amber-500 via-sky-400 to-emerald-400 rounded-full" />
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {INVOLVEMENTS.map((item, idx) => (
             <motion.div
               key={item.id}
@@ -155,17 +156,17 @@ export const PublicInvolvementsSection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.09 }}
               onClick={() => setSelectedItem(item)}
-              className="group bg-[#111] border border-white/10 hover:border-white/35 rounded-xl overflow-hidden shadow-xl transition-all duration-300 flex flex-col cursor-pointer"
+              className="card-dark group border border-white/15 hover:border-sky-400/60 rounded-xl overflow-hidden shadow-2xl transition-all duration-300 flex flex-col cursor-pointer hover-lift"
             >
               {/* Preview Image with Fullscreen Action */}
-              <div className="relative h-40 overflow-hidden bg-[#1A1A18]">
+              <div className="relative h-44 overflow-hidden bg-slate-900">
                 <img
                   src={item.previewImage}
                   alt={item.title}
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 brightness-90 group-hover:brightness-100"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-black/30 pointer-events-none" />
-                <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wider uppercase text-black bg-white shadow-md pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#060A18] via-transparent to-black/30 pointer-events-none" />
+                <span className={`absolute top-3 left-3 px-3 py-1 rounded-full text-[0.65rem] font-bold tracking-wider uppercase text-white bg-gradient-to-r ${item.badgeColor} shadow-lg pointer-events-none`}>
                   {item.badge}
                 </span>
 
@@ -181,28 +182,28 @@ export const PublicInvolvementsSection: React.FC = () => {
                       authority: item.authority,
                     })
                   }}
-                  className="absolute top-3 right-3 px-2 py-1 bg-black/80 hover:bg-white text-white hover:text-black border border-white/20 rounded-md font-ui text-[0.58rem] font-bold tracking-wider uppercase shadow-md transition-all duration-200 flex items-center gap-1 backdrop-blur-sm z-10 cursor-pointer"
+                  className="absolute top-3 right-3 px-2.5 py-1 bg-black/80 hover:bg-white text-white hover:text-black border border-white/20 rounded-md font-ui text-[0.6rem] font-bold tracking-wider uppercase shadow-lg transition-all duration-200 flex items-center gap-1.5 backdrop-blur-sm z-10 cursor-pointer"
                   title="View image full screen"
                   aria-label={`View ${item.title} image on full screen`}
                 >
-                  <Maximize2 className="w-3 h-3" />
+                  <Maximize2 className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">Full Screen</span>
                 </button>
               </div>
 
               {/* Card Content */}
-              <div className="p-5 flex flex-col flex-1">
-                <div className="font-ui text-[0.58rem] font-bold tracking-[0.18em] text-[#9B9790] uppercase mb-2">{item.authority}</div>
-                <h3 className="font-heading text-[0.95rem] font-bold text-white leading-snug mb-2 group-hover:text-[#E8E8E8] transition-colors">
+              <div className="p-6 flex flex-col flex-1 text-left">
+                <div className="font-ui text-[0.62rem] font-bold tracking-[0.16em] text-slate-400 uppercase mb-2">{item.authority}</div>
+                <h3 className="font-heading text-lg font-bold text-white leading-snug mb-2 group-hover:text-sky-300 transition-colors">
                   {item.title}
                 </h3>
-                <p className="font-ui text-[0.8rem] text-[#B4B0A6] leading-[1.65] line-clamp-2 mb-4 flex-1">
+                <p className="font-ui text-sm text-slate-300 leading-relaxed line-clamp-2 mb-4 flex-1">
                   {item.summary}
                 </p>
                 <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/10">
-                  <span className="font-ui text-[0.62rem] text-[#5E5D58]">{item.ref}</span>
-                  <span className="font-ui text-[0.65rem] text-white/70 font-bold flex items-center gap-1">
-                    Details <ChevronRight className="w-3 h-3" />
+                  <span className="font-ui text-xs text-slate-400">{item.ref}</span>
+                  <span className="font-ui text-xs text-sky-400 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Details <ChevronRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
               </div>
