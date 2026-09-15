@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import { CMSProvider } from './context/CMSContext'
-import { DisclaimerGate } from './components/common/DisclaimerGate'
 import { Header } from './components/navigation/Header'
 import { Hero } from './components/sections/Hero'
 import { AtTheBar } from './components/sections/AtTheBar'
@@ -11,8 +10,6 @@ import { RepresentativeMatters } from './components/sections/RepresentativeMatte
 import { About } from './components/sections/About'
 import { ProfessionalTimeline } from './components/sections/ProfessionalTimeline'
 import { AcademicArchive } from './components/sections/AcademicArchive'
-import { PublicInvolvementsSection } from './components/sections/PublicInvolvementsSection'
-import { LegalInsightsSection } from './components/sections/LegalInsightsSection'
 import { DigitalPresence } from './components/sections/DigitalPresence'
 import { ContactAndAppointment } from './components/sections/ContactAndAppointment'
 import { FloatingContactDock } from './components/common/FloatingContactDock'
@@ -42,21 +39,14 @@ export function AppContent() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#000000] text-[#FFFFFF] selection:bg-blue-600 selection:text-white">
-      {/* Dynamic Vibrant Scroll Progress Bar */}
+    <div className="relative min-h-screen bg-[#000000] text-[#FFFFFF] selection:bg-white selection:text-black">
+      {/* Monochrome Classic Scroll Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-blue-600 via-amber-500 to-emerald-400 z-50 origin-left shadow-[0_0_14px_rgba(59,130,246,0.8)] pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-white z-50 origin-left pointer-events-none"
         style={{ scaleX }}
       />
 
-      {/* Subtle Ambient Colorful Orbs */}
-      <div className="fixed top-1/4 -left-32 w-96 h-96 bg-blue-600/[0.02] animate-ambient rounded-full blur-3xl pointer-events-none z-0" />
-      <div className="fixed top-2/3 -right-32 w-96 h-96 bg-amber-500/[0.015] animate-ambient rounded-full blur-3xl pointer-events-none z-0" />
-
-      {/* 00: Initial Disclaimer Gate (Full-screen chamber entrance) */}
-      <DisclaimerGate />
-
-      {/* Primary Sticky Editorial Header */}
+      {/* Primary Sticky Traditional Header */}
       <Header
         onOpenAppointment={() => setIsAppointmentOpen(true)}
         onOpenAdmin={() => setIsAdminOpen(true)}
@@ -67,44 +57,38 @@ export function AppContent() {
         {/* HERO */}
         <Hero onExploreClick={handleExploreProfile} />
 
-        {/* 01 / AT THE BAR (Dramatic black section with animated 22+) */}
+        {/* 01 / AT THE BAR (Classic black section with 22+ Years standing) */}
         <AtTheBar />
 
         {/* 02 / RAJASTHAN HIGH COURT (Chamber 259, Block-E context) */}
         <HighCourtChamber />
 
-        {/* 03 / PRACTICE AREAS (5 distinct visual chapters with custom SVGs) */}
+        {/* 03 / PRACTICE AREAS */}
         <PracticeAreas />
 
         {/* 04 / REPRESENTATIVE MATTER CATEGORIES (strictly factual, Bar Council compliant) */}
         <RepresentativeMatters />
 
-        {/* 05 / PROFILE & BIOGRAPHY (Editorial split layout) */}
+        {/* 05 / PROFILE & BIOGRAPHY */}
         <About />
 
-        {/* 06 / PROFESSIONAL TIMELINE (Vertical animated tie-spine) */}
+        {/* 06 / PROFESSIONAL TIMELINE */}
         <ProfessionalTimeline />
 
-        {/* 07 / ACADEMIC BACKGROUND & 08 / MEMBERSHIPS & CIVIC */}
+        {/* 07 / ACADEMIC BACKGROUND & BAR MEMBERSHIPS */}
         <AcademicArchive />
 
-        {/* 09 / OFFICIAL INVOLVEMENTS, CASE LEDGERS & PUBLIC RECORDS (Authentic Document Previews) */}
-        <PublicInvolvementsSection />
-
-        {/* 10 / LEGAL INSIGHTS (Journal-style procedural guides) */}
-        <LegalInsightsSection />
-
-        {/* 11 / DIGITAL PRESENCE (Verified LinkedIn, Facebook, Instagram + Animated Radar) */}
+        {/* 08 / CHAMBER VERIFICATION & GOOGLE BUSINESS PROFILE */}
         <DigitalPresence />
 
-        {/* 12 / CONTACT & APPOINTMENT (Coordinates, Google maps link, Forms) */}
+        {/* 09 / CONTACT & APPOINTMENT (Coordinates, Google maps link, Forms) */}
         <ContactAndAppointment />
       </main>
 
       {/* Floating Action Dock (Call, WhatsApp, Appointment) */}
       <FloatingContactDock onOpenAppointment={() => setIsAppointmentOpen(true)} />
 
-      {/* Footer with Judicial Architecture SVG Art & Compliance links */}
+      {/* Footer with Monogram Crest, Compliance links & Social Media */}
       <Footer
         onOpenDisclaimer={() => setIsDisclaimerOpen(true)}
         onOpenPrivacy={() => setIsPrivacyOpen(true)}

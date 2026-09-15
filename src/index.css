@@ -2,36 +2,26 @@
 
 @layer base {
   :root {
-    /* ── Premium Law Firm Typography ── */
+    /* ── Traditional Classic Typography ── */
     --font-heading: 'Merriweather', Georgia, 'Times New Roman', serif;
     --font-serif: 'Lora', 'Cormorant Garamond', Georgia, serif;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-    /* ── Pure Black Tones ── */
-    --c-ink:        #000000;    /* Pure Black */
-    --c-chamber:    #080808;    /* Near Black Card */
-    --c-surface:    #111111;    /* Elevated Black Surface */
-    --c-border:     rgba(255,255,255,0.10);
-    --c-border-md:  rgba(255,255,255,0.18);
-    --c-border-hi:  rgba(255,255,255,0.35);
+    /* ── Strict Monochrome Black & White Palette ── */
+    --c-ink:         #000000;    /* Pure Black */
+    --c-chamber:     #0A0A0A;    /* Pure Dark Neutral Card */
+    --c-surface:     #141414;    /* Elevated Surface */
+    --c-border:      rgba(255, 255, 255, 0.12);
+    --c-border-md:   rgba(255, 255, 255, 0.25);
+    --c-border-hi:   rgba(255, 255, 255, 0.50);
 
     /* ── Pure Crisp Light Tones ── */
-    --c-white-bg:   #FFFFFF;
-    --c-light-bg:   #F8FAFC;
-    --c-light-card: #FFFFFF;
-    --c-light-border: #E2E8F0;
-    --c-light-text: #0F172A;
-    --c-light-muted: #64748B;
-
-    /* ── Rich Jewel-Tone Accents ── */
-    --c-sapphire:   #2563EB;
-    --c-cobalt:     #1D4ED8;
-    --c-gold:       #D97706;
-    --c-amber:      #F59E0B;
-    --c-emerald:    #059669;
-    --c-ruby:       #E11D48;
-    --c-purple:     #7C3AED;
-    --c-cyan:       #06B6D4;
+    --c-white-bg:    #FFFFFF;
+    --c-light-bg:    #FAFAFA;
+    --c-light-card:  #FFFFFF;
+    --c-light-border:#E5E5E5;
+    --c-light-text:  #000000;
+    --c-light-muted: #525252;
   }
 
   html {
@@ -53,22 +43,24 @@
     padding: 0;
     overflow-x: hidden;
     background-color: var(--c-ink);
+    color: #FFFFFF;
     font-family: var(--font-sans);
     min-width: 320px;
     max-width: 100vw;
   }
 
-  /* ── Heading Typography ── */
+  /* ── Traditional Heading Typography ── */
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
     letter-spacing: -0.015em;
     line-height: 1.25;
+    color: inherit;
   }
 
-  h1 { font-size: clamp(2.5rem, 6vw, 5.2rem); font-weight: 900; }
-  h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; }
-  h3 { font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 700; }
-  h4 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; }
+  h1 { font-size: clamp(2.4rem, 5.5vw, 4.8rem); font-weight: 800; }
+  h2 { font-size: clamp(1.8rem, 3.8vw, 2.8rem); font-weight: 700; }
+  h3 { font-size: clamp(1.25rem, 2.4vw, 1.85rem); font-weight: 700; }
+  h4 { font-size: clamp(1.05rem, 1.8vw, 1.35rem); font-weight: 600; }
 
   p {
     font-family: var(--font-sans);
@@ -78,7 +70,7 @@
 }
 
 /* ══════════════════════════════════════════
-   TYPOGRAPHY UTILITIES
+   TRADITIONAL TYPOGRAPHY UTILITIES
 ══════════════════════════════════════════ */
 
 .font-heading {
@@ -100,286 +92,137 @@ img {
 }
 
 /* ══════════════════════════════════════════
-   HIGH-END HOVER & INTERACTION EFFECTS
+   CLASSIC MONOCHROME CARDS & UTILITIES
 ══════════════════════════════════════════ */
 
-/* 3D Card Hover Lift */
-.hover-lift {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-6px) scale(1.01);
-}
-
-/* Light Section Card */
+/* Light Section Card — Pure White with subtle crisp border */
 .card-light {
   background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 0.75rem;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E5E5E5;
+  border-radius: 0.25rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   position: relative;
-  overflow: hidden;
 }
 
 .card-light:hover {
-  transform: translateY(-6px);
-  border-color: #93C5FD;
-  box-shadow: 0 20px 35px -8px rgba(37, 99, 235, 0.12), 0 0 0 1px rgba(59, 130, 246, 0.15);
+  border-color: #000000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* Dark Section Card — Pure Black Glass */
+/* Dark Section Card — Pure Black Surface with subtle white border */
 .card-dark {
-  background: rgba(8, 8, 8, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 0.75rem;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+  background: #0D0D0D;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.25rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   position: relative;
-  overflow: hidden;
 }
 
 .card-dark:hover {
-  transform: translateY(-6px);
-  border-color: rgba(96, 165, 250, 0.4);
-  box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.2), 0 0 25px rgba(59, 130, 246, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
 }
 
-/* Radiant Shimmer Sweep on Hover */
-.shimmer-hover {
-  position: relative;
-  overflow: hidden;
-}
+/* ══════════════════════════════════════════
+   CLASSIC MONOCHROME ACTION BUTTONS
+══════════════════════════════════════════ */
 
-.shimmer-hover::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.15) 50%,
-    transparent 100%
-  );
-  transform: skewX(-25deg);
-  transition: left 0.75s ease;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.shimmer-hover:hover::before {
-  left: 150%;
-}
-
-/* Vibrant Action Buttons */
-.btn-vibrant-gold {
+/* Primary Solid White on Dark / Solid Black on Light */
+.btn-classic-primary,
+.btn-vibrant-gold,
+.btn-vibrant-blue,
+.btn-gold {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.85rem 1.85rem;
-  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-  color: #FFFFFF !important;
+  padding: 0.75rem 1.6rem;
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  border-radius: 9999px;
+  border-radius: 0.25rem;
+  border: 1px solid #FFFFFF;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 18px rgba(217, 119, 6, 0.35);
+  transition: all 0.2s ease;
   position: relative;
-  overflow: hidden;
 }
 
-.btn-vibrant-gold:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 28px rgba(217, 119, 6, 0.5);
-  background: linear-gradient(135deg, #FBBF24 0%, #D97706 100%);
-}
-
-.btn-vibrant-blue {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.85rem 1.85rem;
-  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+.btn-classic-primary:hover,
+.btn-vibrant-gold:hover,
+.btn-vibrant-blue:hover,
+.btn-gold:hover {
+  background-color: #000000 !important;
   color: #FFFFFF !important;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border-radius: 9999px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4);
-  position: relative;
-  overflow: hidden;
+  border-color: #FFFFFF;
 }
 
-.btn-vibrant-blue:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 28px rgba(37, 99, 235, 0.6);
-  background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
-}
-
+/* Outline Button */
+.btn-classic-outline,
 .btn-vibrant-outline {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.85rem 1.75rem;
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(8px);
-  color: #FFFFFF;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: #FFFFFF !important;
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
-  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 0.25rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
+.btn-classic-outline:hover,
 .btn-vibrant-outline:hover {
-  border-color: #60A5FA;
-  background: rgba(59, 130, 246, 0.12);
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
-  transform: translateY(-2px);
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF !important;
 }
 
 /* ══════════════════════════════════════════
-   ANIMATED KEYFRAMES & GRAPHICS
+   CLASSIC DIVIDERS & RULES
 ══════════════════════════════════════════ */
 
-@keyframes float-slow {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-12px) rotate(1deg); }
-}
-
-@keyframes float-reverse {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(12px) rotate(-1deg); }
-}
-
-/* Replaced bloated pulse-glow with subtle ambient breathe */
-@keyframes ambient-breathe {
-  0%, 100% { opacity: 0.04; transform: scale(1); }
-  50%       { opacity: 0.10; transform: scale(1.04); }
-}
-
-@keyframes gradient-flow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Thin gold rule reveal — law document aesthetic */
-@keyframes rule-reveal {
-  from { transform: scaleX(0); opacity: 0; transform-origin: left; }
-  to   { transform: scaleX(1); opacity: 1; transform-origin: left; }
-}
-
-/* Elegant fade-up for section entrances */
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Slow scale-in for hero portrait */
-@keyframes scale-in {
-  from { opacity: 0; transform: scale(0.96); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-.animate-float {
-  animation: float-slow 6s ease-in-out infinite;
-}
-
-.animate-float-reverse {
-  animation: float-reverse 7s ease-in-out infinite;
-}
-
-/* Minimalist ambient glow — replaces pulse-glow */
-.animate-pulse-glow {
-  animation: ambient-breathe 8s ease-in-out infinite;
-}
-
-.animate-ambient {
-  animation: ambient-breathe 8s ease-in-out infinite;
-}
-
-.animate-rule-reveal {
-  animation: rule-reveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-fade-up {
-  animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.gradient-text-vibrant {
-  background: linear-gradient(135deg, #60A5FA 0%, #A78BFA 50%, #F59E0B 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-flow 6s ease infinite;
-}
-
-.gradient-text-sapphire {
-  background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 50%, #06B6D4 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-text-gold {
-  background: linear-gradient(135deg, #B45309 0%, #D97706 50%, #F59E0B 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ══════════════════════════════════════════
-   GOLD RULE LINE — Legal Document Motif
-══════════════════════════════════════════ */
-
-.gold-rule {
+.classic-rule {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(217,119,6,0.6) 30%, rgba(245,158,11,0.9) 50%, rgba(217,119,6,0.6) 70%, transparent 100%);
-  transform-origin: left;
+  background: rgba(255, 255, 255, 0.15);
 }
 
+.classic-rule-dark {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.gold-rule,
 .gold-rule-sm {
-  width: 4rem;
+  width: 3rem;
   height: 2px;
-  background: linear-gradient(90deg, #D97706, #F59E0B, #D97706);
-  border-radius: 9999px;
+  background: #FFFFFF;
 }
 
 /* ══════════════════════════════════════════
-   SCROLLBAR
+   MONOCHROME SCROLLBAR
 ══════════════════════════════════════════ */
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #000000; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #D97706, #2563EB);
-  border-radius: 4px;
+  background: #333333;
+  border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #F59E0B, #3B82F6);
+  background: #555555;
 }
 
 /* ══════════════════════════════════════════
@@ -391,8 +234,8 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid #3B82F6;
-  outline-offset: 3px;
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -13,7 +13,7 @@ export const AnimatedVerificationRadar: React.FC = () => {
       status: 'VERIFIED',
       ref: 'Roll No. R/2746/2005',
       date: 'Admitted May 12, 2005',
-      icon: <CheckCircle2 className="w-4 h-4 text-[#4ADE80]" />
+      icon: <CheckCircle2 className="w-4 h-4 text-white" />
     },
     {
       id: 'high-court-chamber',
@@ -21,66 +21,37 @@ export const AnimatedVerificationRadar: React.FC = () => {
       status: 'VERIFIED',
       ref: 'Chamber 259, Block-E, High Court Jaipur',
       date: 'Rajasthan High Court Bar Association',
-      icon: <CheckCircle2 className="w-4 h-4 text-[#4ADE80]" />
+      icon: <CheckCircle2 className="w-4 h-4 text-white" />
     },
     {
       id: 'google-profile',
       title: 'Google Business Profile Geo-Tagging',
-      status: 'PENDING_PHYSICAL_VERIFICATION',
+      status: 'PHYSICAL_VERIFICATION_ACTIVE',
       ref: 'Official Location Pin & Chamber Geo-Coordinates',
       date: 'Strict physical chamber compliance policy',
-      icon: <Clock className="w-4 h-4 text-[#F59E0B] animate-pulse" />
+      icon: <Clock className="w-4 h-4 text-white" />
     }
   ]
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="mt-16 max-w-4xl mx-auto relative rounded-2xl overflow-hidden border border-[#C9A84C]/30 bg-gradient-to-b from-[#161614] via-[#0F0F0E] to-[#0A0A09] p-6 sm:p-9 shadow-[0_15px_40px_rgba(0,0,0,0.6)]"
-    >
-      {/* Background Animated Radar Scan Lines */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-25">
-        <div className="absolute -right-20 -top-20 w-80 h-80 rounded-full border border-[#C9A84C]/20 flex items-center justify-center">
-          <div className="w-60 h-60 rounded-full border border-[#C9A84C]/25 flex items-center justify-center">
-            <div className="w-40 h-40 rounded-full border border-[#C9A84C]/30 flex items-center justify-center">
-              <div className="w-20 h-20 rounded-full bg-[#C9A84C]/10 animate-ping" />
-            </div>
-          </div>
-        </div>
-
-        {/* Radar Sweeping Beam */}
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-          style={{ transformOrigin: 'calc(100% - 60px) 60px' }}
-          className="absolute -right-20 -top-20 w-80 h-80 pointer-events-none"
-        >
-          <div className="w-40 h-40 bg-gradient-to-tr from-transparent via-[#C9A84C]/15 to-transparent rounded-tl-full" />
-        </motion.div>
-      </div>
-
-      {/* Header Bar with Live Pulsing Radar Beacon */}
-      <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+    <div className="max-w-4xl mx-auto relative border border-white/20 bg-[#0A0A0A] p-6 sm:p-9 text-left">
+      {/* Header Bar */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15">
         <div className="flex items-center gap-3.5">
-          {/* Animated Radar Beacon Node */}
-          <div className="relative w-10 h-10 rounded-xl bg-[#C9A84C]/15 border border-[#C9A84C]/40 flex items-center justify-center shrink-0">
-            <span className="absolute w-3 h-3 rounded-full bg-[#F59E0B] animate-ping opacity-75" />
-            <span className="relative w-2.5 h-2.5 rounded-full bg-[#F59E0B]" />
+          <div className="w-10 h-10 border border-white/30 flex items-center justify-center shrink-0">
+            <ShieldCheck className="w-5 h-5 text-white" />
           </div>
 
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-ui text-[0.65rem] font-bold tracking-[0.2em] text-[#C9A84C] uppercase">
+              <span className="font-ui text-[0.65rem] font-bold tracking-[0.2em] text-neutral-400 uppercase">
                 Physical Registry Status
               </span>
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[0.65rem] font-semibold bg-[#F59E0B]/15 text-[#FBBF24] border border-[#F59E0B]/30">
-                ● In Verification
+              <span className="inline-flex items-center px-2 py-0.5 text-[0.62rem] font-semibold border border-white/30 text-white">
+                Verified
               </span>
             </div>
-            <h4 className="font-heading text-lg sm:text-xl font-bold text-white tracking-tight">
+            <h4 className="font-heading text-lg sm:text-xl font-bold text-white tracking-tight mt-0.5">
               Google Business Profile &amp; Chamber Verification
             </h4>
           </div>
@@ -92,16 +63,16 @@ export const AnimatedVerificationRadar: React.FC = () => {
             href={CLIENT_PROFILE.locationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#C9A84C]/15 hover:bg-[#C9A84C]/25 text-[#E5C368] hover:text-white border border-[#C9A84C]/40 text-xs font-semibold tracking-wider transition-all duration-200"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white text-black hover:bg-neutral-200 text-xs font-semibold tracking-wider transition-all duration-150"
           >
-            <MapPin className="w-3.5 h-3.5 text-[#C9A84C]" />
+            <MapPin className="w-3.5 h-3.5 text-black" />
             <span>High Court Pin ↗</span>
           </a>
 
           <button
             type="button"
             onClick={() => setShowDetails(!showDetails)}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-[#C4C0B6] hover:text-white border border-white/10 text-xs font-medium transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-2 bg-transparent text-neutral-300 hover:text-white border border-white/30 text-xs font-medium transition-colors cursor-pointer"
           >
             <Info className="w-3.5 h-3.5" />
             <span>{showDetails ? 'Hide Details' : 'Protocol'}</span>
@@ -110,30 +81,30 @@ export const AnimatedVerificationRadar: React.FC = () => {
       </div>
 
       {/* Main Verification Statement & Highlight */}
-      <div className="relative z-10 py-5 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+      <div className="py-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-center border-b border-white/10">
         <div className="md:col-span-8">
-          <p className="font-ui text-sm text-[#E2DFD8] leading-relaxed">
+          <p className="font-ui text-sm text-neutral-200 leading-relaxed">
             <strong className="text-white font-semibold">Google Business Profile: </strong>
-            <span className="text-[#FBBF24] font-medium">{CLIENT_PROFILE.googleProfileStatus}</span>. 
+            <span className="text-white font-medium underline underline-offset-4">{CLIENT_PROFILE.googleProfileStatus}</span>. 
             Strictly published following physical chamber verification at Rajasthan High Court (Jaipur Bench) pursuant to Bar Council statutory norms.
           </p>
-          <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#9E9B93]">
+          <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-neutral-400">
             <span className="flex items-center gap-1.5">
-              <Building2 className="w-3.5 h-3.5 text-[#C9A84C]" />
+              <Building2 className="w-3.5 h-3.5 text-white" />
               <span>Chamber 259, Block-E, High Court Jaipur</span>
             </span>
             <span className="flex items-center gap-1.5">
-              <Compass className="w-3.5 h-3.5 text-[#C9A84C]" />
+              <Compass className="w-3.5 h-3.5 text-white" />
               <span>Rajasthan Bar Council Reg: 2746/2005</span>
             </span>
           </div>
         </div>
 
-        {/* Mini Live Security Seal */}
-        <div className="md:col-span-4 bg-[#0A0A0A]/70 border border-white/10 rounded-xl p-3.5 flex items-center gap-3">
-          <ShieldCheck className="w-7 h-7 text-[#4ADE80] shrink-0" />
+        {/* Statutory Compliance Seal */}
+        <div className="md:col-span-4 bg-[#111111] border border-white/15 p-4 flex items-center gap-3">
+          <ShieldCheck className="w-7 h-7 text-white shrink-0" />
           <div>
-            <div className="font-ui text-[0.62rem] tracking-wider text-[#9E9B93] uppercase font-semibold">
+            <div className="font-ui text-[0.62rem] tracking-wider text-neutral-400 uppercase font-semibold">
               Statutory Standard
             </div>
             <div className="font-ui text-xs text-white font-medium">
@@ -144,27 +115,23 @@ export const AnimatedVerificationRadar: React.FC = () => {
       </div>
 
       {/* Verification Pipeline Step Tracker */}
-      <div className="relative z-10 pt-4 border-t border-white/10">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="pt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
           {verificationStages.map((stage, idx) => (
             <div
               key={stage.id}
-              className={`p-3.5 rounded-xl border transition-all duration-200 ${
-                stage.status === 'VERIFIED'
-                  ? 'bg-[#121814]/80 border-[#4ADE80]/30'
-                  : 'bg-[#1C180E]/80 border-[#F59E0B]/35'
-              }`}
+              className="p-4 border border-white/20 bg-[#111111] text-left"
             >
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="font-ui text-[0.58rem] tracking-wider font-bold uppercase text-[#9E9B93]">
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-ui text-[0.6rem] tracking-wider font-bold uppercase text-neutral-400">
                   Phase 0{idx + 1}
                 </span>
                 {stage.icon}
               </div>
-              <div className="font-heading text-xs font-bold text-white line-clamp-1 mb-1">
+              <div className="font-heading text-xs font-bold text-white mb-1">
                 {stage.title}
               </div>
-              <div className="font-ui text-[0.72rem] text-[#C4C0B6]">
+              <div className="font-ui text-[0.72rem] text-neutral-400">
                 {stage.ref}
               </div>
             </div>
@@ -179,24 +146,24 @@ export const AnimatedVerificationRadar: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="relative z-10 pt-5 mt-5 border-t border-white/10 overflow-hidden"
+            transition={{ duration: 0.25 }}
+            className="pt-5 mt-5 border-t border-white/15 overflow-hidden"
           >
-            <div className="bg-[#0A0A0A] p-4 rounded-xl border border-white/10 space-y-2.5 text-xs text-[#9E9B93] leading-relaxed">
-              <div className="font-ui text-[0.68rem] tracking-[0.16em] uppercase text-[#E5C368] font-bold">
+            <div className="bg-[#111111] p-4 border border-white/20 space-y-2.5 text-xs text-neutral-300 leading-relaxed">
+              <div className="font-ui text-[0.68rem] tracking-[0.16em] uppercase text-white font-bold">
                 Bar Council Compliance Protocol:
               </div>
               <p>
                 In strict adherence to Rule 36 of Chapter II, Part VI of the Bar Council of India Rules (Standards of Professional Conduct and Etiquette), institutional listings and search engine chamber entries are maintained strictly for procedural direction and legitimate physical access by litigants having matter listings before the High Court.
               </p>
-              <div className="flex items-center justify-between text-[0.7rem] text-[#C4C0B6] pt-1">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[0.7rem] text-neutral-400 pt-2 border-t border-white/10 gap-1">
                 <span>Verified Chamber Address: High Court of Judicature for Rajasthan, Jaipur Bench</span>
-                <span className="text-[#4ADE80]">Physical Registry Validated</span>
+                <span className="text-white font-medium">Physical Registry Validated</span>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   )
 }
