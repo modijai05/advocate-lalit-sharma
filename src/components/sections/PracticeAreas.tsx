@@ -147,7 +147,7 @@ export const PracticeAreas: React.FC = () => {
                   <img
                     src={currentPhoto.image}
                     alt={currentPhoto.tag}
-                    className="w-full h-full object-cover grayscale opacity-90"
+                    className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
