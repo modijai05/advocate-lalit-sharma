@@ -17,6 +17,13 @@ export interface ProfileData {
   biographyChamber: string
 }
 
+export interface SocialLinksData {
+  linkedin: string
+  facebook: string
+  instagram: string
+  google: string
+}
+
 export interface PracticeArea {
   id: string
   number: string

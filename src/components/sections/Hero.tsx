@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { CLIENT_PROFILE } from '../../data/initialData'
+import { useCMS } from '../../context/CMSContext'
 import { ShieldCheck, Award, ArrowRight, ArrowDown } from 'lucide-react'
 
 interface HeroProps {
@@ -8,6 +8,7 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
+  const { profile } = useCMS()
   return (
     <section className="relative min-h-[90vh] flex flex-col justify-center bg-[#000000] text-white pt-28 pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/20">
       <div className="max-w-7xl mx-auto w-full">
@@ -59,14 +60,14 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
             >
               <div className="flex items-center gap-1.5 px-3 py-1 border border-white/20">
                 <ShieldCheck className="w-3.5 h-3.5 text-white" />
-                <span><strong>Enrolment:</strong> {CLIENT_PROFILE.enrolmentNo}</span>
+                <span><strong>Enrolment:</strong> {profile.enrolmentNo}</span>
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1 border border-white/20">
                 <Award className="w-3.5 h-3.5 text-white" />
-                <span><strong>Standing:</strong> 22+ Years</span>
+                <span><strong>Standing:</strong> {profile.experienceYears}+ Years</span>
               </div>
               <div className="text-neutral-400 text-xs flex items-center gap-1 px-2 py-1">
-                <span>Bar Council of Rajasthan</span>
+                <span>{profile.barCouncil}</span>
               </div>
             </motion.div>
 

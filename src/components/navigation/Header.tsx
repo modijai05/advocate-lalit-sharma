@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CLIENT_PROFILE } from '../../data/initialData'
+import { getChamberWhatsAppLink } from '../../data/initialData'
 import { Calendar, Phone, MessageSquare, Menu, X, ArrowUpRight, ShieldCheck } from 'lucide-react'
 
 interface HeaderProps {
@@ -28,7 +28,6 @@ export const Header: React.FC<HeaderProps> = ({
     { label: 'Practice', href: '#practice' },
     { label: 'Timeline', href: '#timeline' },
     { label: 'Academic', href: '#academic' },
-    { label: 'Verification', href: '#digital-presence' },
     { label: 'Contact', href: '#contact' },
   ]
 
@@ -204,7 +203,7 @@ export const Header: React.FC<HeaderProps> = ({
                   <span>Call now (9829233334)</span>
                 </a>
                 <a
-                  href={`https://wa.me/${CLIENT_PROFILE.whatsapp.replace(/[^0-9]/g, '')}`}
+                  href={getChamberWhatsAppLink()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 py-3 text-xs font-semibold font-ui tracking-wider border border-white/30 text-white hover:bg-white hover:text-black transition-all"

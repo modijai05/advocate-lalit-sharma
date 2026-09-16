@@ -4,16 +4,19 @@ import type {
   PublicationItem,
   LegalInsight,
   EnquirySubmission,
-  AppointmentSubmission
+  AppointmentSubmission,
+  SocialLinksData
 } from '../types'
 import {
   CLIENT_PROFILE,
   INITIAL_PUBLICATIONS,
-  LEGAL_INSIGHTS
+  LEGAL_INSIGHTS,
+  SOCIAL_LINKS
 } from '../data/initialData'
 
 interface CMSContextType {
   profile: ProfileData
+  socialLinks: SocialLinksData
   publications: PublicationItem[]
   insights: LegalInsight[]
   enquiries: EnquirySubmission[]
@@ -25,6 +28,8 @@ interface CMSContextType {
   logoutAdmin: () => void
   submitEnquiry: (enquiry: Omit<EnquirySubmission, 'id' | 'createdAt' | 'status'>) => Promise<{ success: boolean; message: string }>
   submitAppointment: (appointment: Omit<AppointmentSubmission, 'id' | 'createdAt' | 'status'>) => Promise<{ success: boolean; message: string }>
+  updateProfile: (data: Partial<ProfileData>) => void
+  updateSocialLinks: (data: Partial<SocialLinksData>) => void
   updateChamberTimings: (timings: string) => void
   updateGoogleProfileUrl: (url: string) => void
   addPublication: (pub: Omit<PublicationItem, 'id'>) => void
@@ -32,11 +37,14 @@ interface CMSContextType {
   togglePublicationStatus: (id: string) => void
   updateEnquiryStatus: (id: string, status: EnquirySubmission['status']) => void
   updateAppointmentStatus: (id: string, status: AppointmentSubmission['status']) => void
+  resetToDefaults: () => void
 }
 
 const CMSContext = createContext<CMSContextType | undefined>(undefined)
 
 const STORAGE_KEYS = {
+  PROFILE: 'als_cms_profile_v2',
+  SOCIAL: 'als_cms_social_v2',
   PUBLICATIONS: 'als_cms_publications_v1',
   INSIGHTS: 'als_cms_insights_v1',
   ENQUIRIES: 'als_cms_enquiries_v1',
@@ -47,29 +55,52 @@ const STORAGE_KEYS = {
 }
 
 export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [profile] = useState<ProfileData>(CLIENT_PROFILE)
+  const [profile, setProfile] = useState<ProfileData>(() => {
+    const saved = localStorage.getItem(STORAGE_KEYS.PROFILE)
+    return saved ? { ...CLIENT_PROFILE, ...JSON.parse(saved) } : CLIENT_PROFILE
+  })
+
+  const [socialLinks, setSocialLinks] = useState<SocialLinksData>(() => {
+    const saved = localStorage.getItem(STORAGE_KEYS.SOCIAL)
+    return saved ? { ...SOCIAL_LINKS, ...JSON.parse(saved) } : SOCIAL_LINKS
+  })
+
   const [publications, setPublications] = useState<PublicationItem[]>(() => {
     const saved = localStorage.getItem(STORAGE_KEYS.PUBLICATIONS)
     return saved ? JSON.parse(saved) : INITIAL_PUBLICATIONS
   })
+
   const [insights] = useState<LegalInsight[]>(LEGAL_INSIGHTS)
+
   const [enquiries, setEnquiries] = useState<EnquirySubmission[]>(() => {
     const saved = localStorage.getItem(STORAGE_KEYS.ENQUIRIES)
     return saved ? JSON.parse(saved) : []
   })
+
   const [appointments, setAppointments] = useState<AppointmentSubmission[]>(() => {
     const saved = localStorage.getItem(STORAGE_KEYS.APPOINTMENTS)
     return saved ? JSON.parse(saved) : []
   })
+
   const [chamberTimings, setChamberTimings] = useState<string>(() => {
     return localStorage.getItem(STORAGE_KEYS.TIMINGS) || 'Information pending from client.'
   })
+
   const [googleProfileUrl, setGoogleProfileUrl] = useState<string>(() => {
-    return localStorage.getItem(STORAGE_KEYS.GOOGLE_PROFILE) || 'Pending client verification'
+    return localStorage.getItem(STORAGE_KEYS.GOOGLE_PROFILE) || SOCIAL_LINKS.google || 'https://share.google/ubp0Pn0KX1aK9LBQT'
   })
+
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(() => {
     return sessionStorage.getItem(STORAGE_KEYS.ADMIN_AUTH) === 'true'
   })
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.PROFILE, JSON.stringify(profile))
+  }, [profile])
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.SOCIAL, JSON.stringify(socialLinks))
+  }, [socialLinks])
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.PUBLICATIONS, JSON.stringify(publications))
@@ -103,6 +134,14 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const logoutAdmin = () => {
     setIsAdminLoggedIn(false)
     sessionStorage.removeItem(STORAGE_KEYS.ADMIN_AUTH)
+  }
+
+  const updateProfile = (data: Partial<ProfileData>) => {
+    setProfile((prev) => ({ ...prev, ...data }))
+  }
+
+  const updateSocialLinks = (data: Partial<SocialLinksData>) => {
+    setSocialLinks((prev) => ({ ...prev, ...data }))
   }
 
   const submitEnquiry = async (
@@ -161,6 +200,7 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const updateGoogleProfileUrl = (url: string) => {
     setGoogleProfileUrl(url)
+    setSocialLinks((prev) => ({ ...prev, google: url }))
   }
 
   const addPublication = (pub: Omit<PublicationItem, 'id'>) => {
@@ -197,10 +237,24 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     )
   }
 
+  const resetToDefaults = () => {
+    setProfile(CLIENT_PROFILE)
+    setSocialLinks(SOCIAL_LINKS)
+    setPublications(INITIAL_PUBLICATIONS)
+    setChamberTimings('Information pending from client.')
+    setGoogleProfileUrl(SOCIAL_LINKS.google)
+    localStorage.removeItem(STORAGE_KEYS.PROFILE)
+    localStorage.removeItem(STORAGE_KEYS.SOCIAL)
+    localStorage.removeItem(STORAGE_KEYS.PUBLICATIONS)
+    localStorage.removeItem(STORAGE_KEYS.TIMINGS)
+    localStorage.removeItem(STORAGE_KEYS.GOOGLE_PROFILE)
+  }
+
   return (
     <CMSContext.Provider
       value={{
         profile,
+        socialLinks,
         publications,
         insights,
         enquiries,
@@ -212,13 +266,16 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         logoutAdmin,
         submitEnquiry,
         submitAppointment,
+        updateProfile,
+        updateSocialLinks,
         updateChamberTimings,
         updateGoogleProfileUrl,
         addPublication,
         deletePublication,
         togglePublicationStatus,
         updateEnquiryStatus,
-        updateAppointmentStatus
+        updateAppointmentStatus,
+        resetToDefaults
       }}
     >
       {children}

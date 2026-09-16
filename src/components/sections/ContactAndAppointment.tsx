@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SectionLabel } from '../common/SectionLabel'
-import { CLIENT_PROFILE } from '../../data/initialData'
+import { getChamberWhatsAppLink } from '../../data/initialData'
 import { useCMS } from '../../context/CMSContext'
 import {
   MapPin,
@@ -8,15 +8,13 @@ import {
   Mail,
   MessageSquare,
   Clock,
-  Send,
-  Calendar,
   AlertCircle,
   CheckCircle2,
   ExternalLink
 } from 'lucide-react'
 
 export const ContactAndAppointment: React.FC = () => {
-  const { chamberTimings, submitEnquiry, submitAppointment } = useCMS()
+  const { profile, chamberTimings, submitEnquiry, submitAppointment } = useCMS()
 
   const [activeTab, setActiveTab] = useState<'enquiry' | 'appointment'>('enquiry')
 
@@ -69,6 +67,17 @@ export const ContactAndAppointment: React.FC = () => {
     setEnquiryLoading(false)
     setEnquiryFeedback(res)
     if (res.success) {
+      // Build WhatsApp message with all details
+      const waMsg = encodeURIComponent(
+        `Hello Advocate Lalit Sharma,\n\nI am reaching out via your official website with the following enquiry:\n\n` +
+        `*Name:* ${enquiryData.name}\n` +
+        `*Phone:* ${enquiryData.phone}\n` +
+        `*Email:* ${enquiryData.email}\n` +
+        `*Nature of Matter:* ${enquiryData.matterType}\n\n` +
+        `*Message:*\n${enquiryData.message}\n\n` +
+        `Kindly revert at your earliest convenience. Thank you.`
+      )
+      window.open(`https://wa.me/${profile.whatsapp.replace(/[^0-9]/g, '')}?text=${waMsg}`, '_blank')
       setEnquiryData({
         name: '',
         phone: '',
@@ -111,6 +120,19 @@ export const ContactAndAppointment: React.FC = () => {
     setAppointmentLoading(false)
     setAppointmentFeedback(res)
     if (res.success) {
+      // Build WhatsApp message with all booking details
+      const waMsg = encodeURIComponent(
+        `Hello Advocate Lalit Sharma,\n\nI wish to book a consultation at your chambers. Details below:\n\n` +
+        `*Name:* ${appointmentData.name}\n` +
+        `*Phone:* ${appointmentData.phone}\n` +
+        `*Email:* ${appointmentData.email}\n` +
+        `*Preferred Date:* ${appointmentData.preferredDate}\n` +
+        `*Preferred Time:* ${appointmentData.preferredTime}\n` +
+        `*Nature of Matter:* ${appointmentData.matterType}\n\n` +
+        `*Agenda / Context:*\n${appointmentData.message}\n\n` +
+        `Please confirm the appointment at your earliest convenience. Thank you.`
+      )
+      window.open(`https://wa.me/${profile.whatsapp.replace(/[^0-9]/g, '')}?text=${waMsg}`, '_blank')
       setAppointmentData({
         name: '',
         phone: '',
@@ -128,7 +150,7 @@ export const ContactAndAppointment: React.FC = () => {
     <section id="contact" className="relative bg-[#FFFFFF] text-black py-16 sm:py-24 border-b border-black/15 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center mb-12">
-          <SectionLabel number="09" title="Contact & Appointments" theme="light" />
+          <SectionLabel number="08" title="Contact & Appointments" theme="light" />
           <h2 className="font-heading font-bold text-black tracking-tight text-3xl sm:text-4xl mt-1">
             Chambers &amp; Consultations
           </h2>
@@ -148,10 +170,10 @@ export const ContactAndAppointment: React.FC = () => {
                 <span>High Court Chamber</span>
               </div>
               <div className="font-heading text-lg font-bold text-black leading-snug mb-3">
-                {CLIENT_PROFILE.chamber}
+                {profile.chamber}
               </div>
               <a
-                href={CLIENT_PROFILE.locationUrl}
+                href={profile.locationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-ui font-semibold text-neutral-700 hover:text-black underline underline-offset-4"
@@ -168,7 +190,7 @@ export const ContactAndAppointment: React.FC = () => {
                 <span>Residential Office</span>
               </div>
               <div className="font-ui text-sm text-neutral-700 leading-relaxed">
-                {CLIENT_PROFILE.residentialOffice}
+                {profile.residentialOffice}
               </div>
             </div>
 
@@ -196,8 +218,8 @@ export const ContactAndAppointment: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-ui text-[0.65rem] font-bold text-neutral-500 uppercase tracking-wider">WhatsApp Direct</div>
-                  <a href={`https://wa.me/${CLIENT_PROFILE.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer" className="font-ui text-sm font-bold text-black hover:underline">
-                    {CLIENT_PROFILE.whatsapp}
+                  <a href={getChamberWhatsAppLink(undefined, profile.whatsapp)} target="_blank" rel="noopener noreferrer" className="font-ui text-sm font-bold text-black hover:underline">
+                    {profile.whatsapp}
                   </a>
                 </div>
               </div>
@@ -211,8 +233,8 @@ export const ContactAndAppointment: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-ui text-[0.65rem] font-bold text-neutral-500 uppercase tracking-wider">Official Email</div>
-                  <a href={`mailto:${CLIENT_PROFILE.email}`} className="font-ui text-sm font-medium text-black hover:underline break-all">
-                    {CLIENT_PROFILE.email}
+                  <a href={`mailto:${profile.email}`} className="font-ui text-sm font-medium text-black hover:underline break-all">
+                    {profile.email}
                   </a>
                 </div>
               </div>
@@ -387,8 +409,8 @@ export const ContactAndAppointment: React.FC = () => {
                     <span>TRANSMITTING...</span>
                   ) : (
                     <>
-                      <Send className="w-4 h-4" />
-                      <span>SEND ENQUIRY</span>
+                      <MessageSquare className="w-4 h-4" />
+                      <span>SEND VIA WHATSAPP</span>
                     </>
                   )}
                 </button>
@@ -550,8 +572,8 @@ export const ContactAndAppointment: React.FC = () => {
                     <span>PROCESSING...</span>
                   ) : (
                     <>
-                      <Calendar className="w-4 h-4" />
-                      <span>SCHEDULE CONSULTATION</span>
+                      <MessageSquare className="w-4 h-4" />
+                      <span>BOOK VIA WHATSAPP</span>
                     </>
                   )}
                 </button>

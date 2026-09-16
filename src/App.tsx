@@ -10,7 +10,6 @@ import { RepresentativeMatters } from './components/sections/RepresentativeMatte
 import { About } from './components/sections/About'
 import { ProfessionalTimeline } from './components/sections/ProfessionalTimeline'
 import { AcademicArchive } from './components/sections/AcademicArchive'
-import { DigitalPresence } from './components/sections/DigitalPresence'
 import { ContactAndAppointment } from './components/sections/ContactAndAppointment'
 import { FloatingContactDock } from './components/common/FloatingContactDock'
 import { Footer } from './components/navigation/Footer'
@@ -78,10 +77,7 @@ export function AppContent() {
         {/* 07 / ACADEMIC BACKGROUND & BAR MEMBERSHIPS */}
         <AcademicArchive />
 
-        {/* 08 / CHAMBER VERIFICATION & GOOGLE BUSINESS PROFILE */}
-        <DigitalPresence />
-
-        {/* 09 / CONTACT & APPOINTMENT (Coordinates, Google maps link, Forms) */}
+        {/* 08 / CONTACT & APPOINTMENT (Coordinates, Google maps link, Forms) */}
         <ContactAndAppointment />
       </main>
 

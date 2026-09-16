@@ -1,7 +1,8 @@
 import React from 'react'
-import { CLIENT_PROFILE, SOCIAL_LINKS } from '../../data/initialData'
+import { getChamberWhatsAppLink } from '../../data/initialData'
+import { useCMS } from '../../context/CMSContext'
 import { Phone, Mail, MapPin, ShieldCheck, ExternalLink, MessageSquare, Scale, CheckCircle2 } from 'lucide-react'
-import { LinkedInIcon, FacebookIcon, InstagramIcon } from '../brand/SocialIcons'
+import { LinkedInIcon, FacebookIcon, InstagramIcon, GoogleIcon } from '../brand/SocialIcons'
 import { GlowingLSLogo } from '../brand/GlowingLSLogo'
 
 interface FooterProps {
@@ -15,12 +16,12 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenPrivacy,
   onOpenAdmin
 }) => {
+  const { profile, socialLinks } = useCMS()
   const navLinks = [
     { label: 'About Chambers', href: '#about' },
     { label: 'Practice Areas', href: '#practice' },
     { label: 'Professional Timeline', href: '#timeline' },
     { label: 'Academic Archive', href: '#academic' },
-    { label: 'Chamber Verification', href: '#digital-presence' },
     { label: 'Contact & Enquiries', href: '#contact' },
   ]
 
@@ -77,13 +78,13 @@ export const Footer: React.FC<FooterProps> = ({
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-white shrink-0 mt-0.5" />
                 <span className="font-ui text-xs text-neutral-200 font-medium">
-                  {CLIENT_PROFILE.chamber}
+                  {profile.chamber}
                 </span>
               </div>
               <div className="flex items-start gap-2.5 pt-2 border-t border-white/10">
                 <MapPin className="w-4 h-4 text-neutral-400 shrink-0 mt-0.5" />
                 <span className="font-ui text-xs text-neutral-400">
-                  Residential Office: {CLIENT_PROFILE.residentialOffice}
+                  Residential Office: {profile.residentialOffice}
                 </span>
               </div>
             </div>
@@ -92,11 +93,11 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="flex flex-wrap items-center gap-2.5 pt-1">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-white/20 text-neutral-300 text-xs font-ui">
                 <CheckCircle2 className="w-3.5 h-3.5 text-white" />
-                <span>Enrolment: {CLIENT_PROFILE.enrolmentNo}</span>
+                <span>Enrolment: {profile.enrolmentNo}</span>
               </div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 border border-white/20 text-neutral-300 text-xs font-ui">
                 <ShieldCheck className="w-3.5 h-3.5 text-white" />
-                <span>{CLIENT_PROFILE.barCouncil}</span>
+                <span>{profile.barCouncil}</span>
               </div>
             </div>
           </div>
@@ -162,7 +163,7 @@ export const Footer: React.FC<FooterProps> = ({
 
               {/* WhatsApp */}
               <a
-                href={`https://wa.me/${CLIENT_PROFILE.whatsapp.replace(/[^0-9]/g, '')}`}
+                href={getChamberWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-3 bg-[#0A0A0A] border border-white/15 hover:border-white text-white transition-all group"
@@ -172,13 +173,13 @@ export const Footer: React.FC<FooterProps> = ({
                 </div>
                 <div>
                   <div className="text-[0.62rem] uppercase font-bold text-neutral-400">WhatsApp Chambers</div>
-                  <div className="font-bold">{CLIENT_PROFILE.whatsapp}</div>
+                  <div className="font-bold">{profile.whatsapp}</div>
                 </div>
               </a>
 
               {/* Email */}
               <a
-                href={`mailto:${CLIENT_PROFILE.email}`}
+                href={`mailto:${profile.email}`}
                 className="flex items-center gap-3 p-3 bg-[#0A0A0A] border border-white/15 hover:border-white text-white transition-all group break-all"
               >
                 <div className="p-2 border border-white/20 text-white shrink-0">
@@ -186,13 +187,13 @@ export const Footer: React.FC<FooterProps> = ({
                 </div>
                 <div>
                   <div className="text-[0.62rem] uppercase font-bold text-neutral-400">Chamber Email</div>
-                  <div className="font-medium text-xs sm:text-sm">{CLIENT_PROFILE.email}</div>
+                  <div className="font-medium text-xs sm:text-sm">{profile.email}</div>
                 </div>
               </a>
 
               {/* Google Maps Button */}
               <a
-                href={CLIENT_PROFILE.locationUrl}
+                href={profile.locationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-[#0A0A0A] border border-white/20 hover:border-white text-white transition-all flex items-center justify-between"
@@ -225,9 +226,9 @@ export const Footer: React.FC<FooterProps> = ({
             <span className="font-ui text-xs font-bold tracking-widest text-neutral-400 uppercase">
               Official Profiles:
             </span>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2">
               <a
-                href={SOCIAL_LINKS.linkedin}
+                href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Advocate Lalit Sharma on LinkedIn"
@@ -238,7 +239,7 @@ export const Footer: React.FC<FooterProps> = ({
               </a>
 
               <a
-                href={SOCIAL_LINKS.facebook}
+                href={socialLinks.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Advocate Lalit Sharma on Facebook"
@@ -249,7 +250,7 @@ export const Footer: React.FC<FooterProps> = ({
               </a>
 
               <a
-                href={SOCIAL_LINKS.instagram}
+                href={socialLinks.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Advocate Lalit Sharma on Instagram"
@@ -257,6 +258,17 @@ export const Footer: React.FC<FooterProps> = ({
               >
                 <InstagramIcon className="w-4 h-4" />
                 <span>Instagram</span>
+              </a>
+
+              <a
+                href={socialLinks.google}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Advocate Lalit Sharma on Google"
+                className="flex items-center gap-2 px-3 py-1.5 border border-white/25 hover:border-white text-white hover:bg-white hover:text-black transition-all text-xs font-ui"
+              >
+                <GoogleIcon className="w-4 h-4" />
+                <span>Google</span>
               </a>
             </div>
           </div>
@@ -275,13 +287,13 @@ export const Footer: React.FC<FooterProps> = ({
             >
               Privacy Policy
             </button>
+            {/* Hidden staff portal trigger — only visible to authorised chamber staff */}
             <button
               onClick={onOpenAdmin}
-              className="text-neutral-500 hover:text-neutral-300 transition-colors cursor-pointer"
-              title="Chamber Staff Portal"
-            >
-              Staff Portal
-            </button>
+              className="opacity-0 hover:opacity-100 transition-opacity duration-300 w-2 h-2 rounded-full bg-white/20 cursor-pointer"
+              title=""
+              aria-label="Chamber Portal"
+            />
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, MessageSquare, Calendar, Mail, X } from 'lucide-react'
-import { CLIENT_PROFILE } from '../../data/initialData'
+import { CLIENT_PROFILE, getChamberWhatsAppLink } from '../../data/initialData'
 
 interface FloatingContactDockProps {
   onOpenAppointment: () => void
@@ -26,7 +26,7 @@ export const FloatingContactDock: React.FC<FloatingContactDockProps> = ({ onOpen
             <motion.a
               whileHover={{ scale: 1.03, x: -4 }}
               whileTap={{ scale: 0.97 }}
-              href={`https://wa.me/${CLIENT_PROFILE.whatsapp.replace(/[^0-9]/g, '')}`}
+              href={getChamberWhatsAppLink()}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-4 py-2.5 bg-black text-white border border-white/30 hover:border-white hover:bg-white hover:text-black rounded-sm text-xs font-semibold tracking-wide transition-all"

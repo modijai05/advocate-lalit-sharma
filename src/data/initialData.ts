@@ -36,7 +36,17 @@ export const SOCIAL_LINKS = {
   linkedin:
     'https://www.linkedin.com/in/lalit-sharma-0abb57281?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
   facebook: 'https://www.facebook.com/share/1BqXCMmSmz/?mibextid=wwXIfr',
-  instagram: 'https://www.instagram.com/lalitsharmajaipur?stkn=dHJhMmZiNGc1M2Q1'
+  instagram: 'https://www.instagram.com/lalitsharmajaipur?stkn=dHJhMmZiNGc1M2Q1',
+  google: 'https://share.google/ubp0Pn0KX1aK9LBQT'
+}
+
+export const DEMO_WHATSAPP_MESSAGE =
+  'Hello Advocate Lalit Sharma,\n\nI am contacting your office through your official website to enquire about legal consultation regarding Rajasthan High Court matters.\n\nKindly advise on chamber consultation availability. Thank you.'
+
+export const getChamberWhatsAppLink = (customMessage?: string, phoneNum?: string) => {
+  const cleanPhone = (phoneNum || CLIENT_PROFILE.whatsapp).replace(/[^0-9]/g, '')
+  const text = encodeURIComponent(customMessage || DEMO_WHATSAPP_MESSAGE)
+  return `https://wa.me/${cleanPhone}?text=${text}`
 }
 
 export const PRACTICE_AREAS: PracticeArea[] = [

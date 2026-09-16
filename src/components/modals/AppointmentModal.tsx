@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Calendar, CheckCircle2, AlertCircle } from 'lucide-react'
+import { X, MessageSquare, CheckCircle2, AlertCircle } from 'lucide-react'
 import { useCMS } from '../../context/CMSContext'
 import { AdvocateTieMotif } from '../brand/AdvocateTieMotif'
+import { CLIENT_PROFILE } from '../../data/initialData'
 
 interface AppointmentModalProps {
   isOpen: boolean
@@ -53,6 +54,18 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
     setFeedback(res)
 
     if (res.success) {
+      const waMsg = encodeURIComponent(
+        `Hello Advocate Lalit Sharma,\n\nI wish to book a consultation at your chambers. Details below:\n\n` +
+        `*Name:* ${formData.name}\n` +
+        `*Phone:* ${formData.phone}\n` +
+        `*Email:* ${formData.email}\n` +
+        `*Preferred Date:* ${formData.preferredDate}\n` +
+        `*Preferred Time:* ${formData.preferredTime}\n` +
+        `*Nature of Matter:* ${formData.matterType}\n\n` +
+        `*Agenda / Context:*\n${formData.message}\n\n` +
+        `Please confirm the appointment at your earliest convenience. Thank you.`
+      )
+      window.open(`https://wa.me/${CLIENT_PROFILE.whatsapp.replace(/[^0-9]/g, '')}?text=${waMsg}`, '_blank')
       setTimeout(() => {
         setFormData({
           name: '',
@@ -249,8 +262,8 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({ isOpen, onCl
                 disabled={loading}
                 className="px-6 py-2.5 bg-[#F7F7F5] text-black text-xs font-sans font-medium uppercase tracking-wider hover:bg-white transition-colors cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
               >
-                <Calendar className="w-3.5 h-3.5" />
-                <span>{loading ? 'Submitting...' : 'Request Appointment'}</span>
+                <MessageSquare className="w-3.5 h-3.5" />
+                <span>{loading ? 'Submitting...' : 'Book via WhatsApp'}</span>
               </button>
             </div>
           </form>

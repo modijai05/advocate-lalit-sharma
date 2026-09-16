@@ -1,10 +1,11 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { SectionLabel } from '../common/SectionLabel'
-import { CLIENT_PROFILE } from '../../data/initialData'
+import { useCMS } from '../../context/CMSContext'
 import { Scale, Award, Landmark, Languages } from 'lucide-react'
 
 export const About: React.FC = () => {
+  const { profile } = useCMS()
   return (
     <section id="about" className="relative bg-[#FFFFFF] text-black py-16 sm:py-24 border-b border-black/15 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
@@ -43,11 +44,11 @@ export const About: React.FC = () => {
             >
               {/* Highlight Quote */}
               <p className="font-serif text-lg sm:text-xl text-black leading-relaxed italic border-l-2 border-black pl-4 py-1 bg-neutral-50">
-                "{CLIENT_PROFILE.biographyIntro}"
+                "{profile.biographyIntro}"
               </p>
 
               <p className="font-ui text-sm sm:text-base text-neutral-700 leading-relaxed">
-                {CLIENT_PROFILE.biographyChamber}
+                {profile.biographyChamber}
               </p>
 
               {/* 4 Classic Monochrome Credential Cards */}
@@ -56,22 +57,22 @@ export const About: React.FC = () => {
                   {
                     icon: <Award className="w-4 h-4 text-black" strokeWidth={2} />,
                     label: 'Bar Enrolment',
-                    value: CLIENT_PROFILE.enrolmentNo,
+                    value: profile.enrolmentNo,
                   },
                   {
                     icon: <Landmark className="w-4 h-4 text-black" strokeWidth={2} />,
                     label: 'High Court Chamber',
-                    value: '259, Block-E',
+                    value: profile.chamber ? profile.chamber.split(',')[0] : '259, Block-E',
                   },
                   {
                     icon: <Scale className="w-4 h-4 text-black" strokeWidth={2} />,
                     label: 'Judicial Standing',
-                    value: '22+ Years',
+                    value: `${profile.experienceYears}+ Years`,
                   },
                   {
                     icon: <Languages className="w-4 h-4 text-black" strokeWidth={2} />,
                     label: 'Courtroom Languages',
-                    value: 'Hindi · English',
+                    value: profile.languages?.join(' · ') || 'Hindi · English',
                   },
                 ].map((card) => (
                   <div
