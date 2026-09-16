@@ -74,10 +74,10 @@ export function AppContent() {
         {/* 06 / PROFESSIONAL TIMELINE */}
         <ProfessionalTimeline />
 
-        {/* 07 / ACADEMIC BACKGROUND & BAR MEMBERSHIPS */}
+        {/* 07 / ACADEMIC BACKGROUND & 08 / BAR MEMBERSHIPS (Black Background) */}
         <AcademicArchive />
 
-        {/* 08 / CONTACT & APPOINTMENT (Coordinates, Google maps link, Forms) */}
+        {/* 09 / CONTACT & APPOINTMENTS (Coordinates, Google maps link, Forms) */}
         <ContactAndAppointment />
       </main>
 

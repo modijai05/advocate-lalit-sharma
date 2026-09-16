@@ -22,6 +22,7 @@ export const Footer: React.FC<FooterProps> = ({
     { label: 'Practice Areas', href: '#practice' },
     { label: 'Professional Timeline', href: '#timeline' },
     { label: 'Academic Archive', href: '#academic' },
+    { label: 'Bar Memberships', href: '#memberships' },
     { label: 'Contact & Enquiries', href: '#contact' },
   ]
 
@@ -287,13 +288,16 @@ export const Footer: React.FC<FooterProps> = ({
             >
               Privacy Policy
             </button>
-            {/* Hidden staff portal trigger — only visible to authorised chamber staff */}
+            {/* Staff portal trigger — slightly visible for authorized chamber staff */}
             <button
               onClick={onOpenAdmin}
-              className="opacity-0 hover:opacity-100 transition-opacity duration-300 w-2 h-2 rounded-full bg-white/20 cursor-pointer"
-              title=""
-              aria-label="Chamber Portal"
-            />
+              className="text-neutral-500 hover:text-white transition-all cursor-pointer text-xs font-ui flex items-center gap-1.5 opacity-50 hover:opacity-100"
+              title="Chamber Staff Portal"
+              aria-label="Staff Portal"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-neutral-400" />
+              <span>Staff Portal</span>
+            </button>
           </div>
         </div>
 

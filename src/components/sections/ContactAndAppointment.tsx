@@ -150,7 +150,7 @@ export const ContactAndAppointment: React.FC = () => {
     <section id="contact" className="relative bg-[#FFFFFF] text-black py-16 sm:py-24 border-b border-black/15 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center mb-12">
-          <SectionLabel number="08" title="Contact & Appointments" theme="light" />
+          <SectionLabel number="09" title="Contact & Appointments" theme="light" />
           <h2 className="font-heading font-bold text-black tracking-tight text-3xl sm:text-4xl mt-1">
             Chambers &amp; Consultations
           </h2>
